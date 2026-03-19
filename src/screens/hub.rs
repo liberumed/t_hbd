@@ -1,6 +1,7 @@
 use leptos::prelude::*;
 use crate::state::{ActivityId, AppState, Screen};
 use crate::particles::UnderwaterScene;
+use crate::creatures::ClamIcon;
 
 #[component]
 pub fn HubScreen() -> impl IntoView {
@@ -54,7 +55,7 @@ pub fn HubScreen() -> impl IntoView {
                                 class=location_class(id)
                                 on:click=on_activity_click(id)
                             >
-                                <span class="loc-icon">{location_icon(id)}</span>
+                                <span class="loc-icon">{location_icon_view(id)}</span>
                                 <span class="loc-label">{id.label()}</span>
                                 <Show when=move || state.is_completed(&id)>
                                     <span class="loc-check">"✓"</span>
@@ -78,12 +79,13 @@ pub fn HubScreen() -> impl IntoView {
     }
 }
 
-fn location_icon(id: ActivityId) -> &'static str {
+fn location_icon_view(id: ActivityId) -> impl leptos::IntoView {
+    use leptos::prelude::*;
     match id {
-        ActivityId::PearlWisdom => "🦪",
-        ActivityId::CurrentRider => "🐟",
-        ActivityId::CoralGarden => "🪸",
-        ActivityId::DeepSeaLights => "🐡",
-        ActivityId::TreasureHunt => "🦀",
+        ActivityId::PearlWisdom => view! { <ClamIcon /> }.into_any(),
+        ActivityId::CurrentRider => view! { "🐟" }.into_any(),
+        ActivityId::CoralGarden => view! { "🪸" }.into_any(),
+        ActivityId::DeepSeaLights => view! { "🐡" }.into_any(),
+        ActivityId::TreasureHunt => view! { "🦀" }.into_any(),
     }
 }

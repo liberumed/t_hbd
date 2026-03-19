@@ -2,6 +2,7 @@ use leptos::prelude::*;
 use crate::state::{ActivityId, AppState};
 use crate::wishes;
 use crate::particles::UnderwaterScene;
+use crate::creatures::ClamIcon;
 
 #[component]
 pub fn FinaleScreen() -> impl IntoView {
@@ -11,19 +12,18 @@ pub fn FinaleScreen() -> impl IntoView {
         state.reset();
     };
 
-    let creature_icons = ["🦪", "🐟", "🪸", "🐡", "🦀"];
-
     view! {
         <div class="screen finale-screen">
             <UnderwaterScene bubble_count=30 seaweed_count=4 fish_count=5
                 show_light_rays=false />
 
             <div class="finale-creatures">
-                {creature_icons
+                <span class="finale-creature" style="animation-delay: 0.5s;"><ClamIcon /></span>
+                {["🐟", "🪸", "🐡", "🦀"]
                     .into_iter()
                     .enumerate()
                     .map(|(i, icon)| {
-                        let delay = 0.5 + i as f64 * 1.0;
+                        let delay = 0.5 + (i + 1) as f64 * 1.0;
                         let style = format!("animation-delay: {delay:.1}s;");
                         view! {
                             <span class="finale-creature" style=style>{icon}</span>

@@ -4,9 +4,7 @@ pub fn wish_for(activity: &ActivityId) -> &'static str {
     match activity {
         ActivityId::PearlWisdom => concat!(
             "May every year bring you pearls of wisdom — ",
-            "the kind you earn through curiosity, courage, and laughter. ",
-            "You are 12 now, and the ocean of life is full of treasures ",
-            "waiting for someone as bright as you."
+            "the kind you earn through curiosity, courage, and laughter."
         ),
         ActivityId::CurrentRider => concat!(
             "Life will have currents that push and pull, ",

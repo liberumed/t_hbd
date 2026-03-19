@@ -1,6 +1,7 @@
 mod app;
 mod state;
 mod audio;
+mod creatures;
 mod particles;
 mod wishes;
 mod screens;
