@@ -91,21 +91,18 @@ pub fn SwimmingFish(#[prop(default = 3)] count: usize) -> impl IntoView {
             let delay = rng.gen_range(0.0..15.0_f64);
             let duration = rng.gen_range(12.0..25.0_f64);
             let size = rng.gen_range(16..30);
-            let flip = if rng.gen_bool(0.5) { -1 } else { 1 };
-
             let style = format!(
                 "top: {top}%; animation-delay: {delay:.1}s; \
                  animation-duration: {duration:.1}s; \
-                 font-size: {size}px; \
-                 transform: scaleX({flip});"
+                 font-size: {size}px;"
             );
 
             view! {
                 <div class="swimming-fish" style=style>
                     <svg viewBox="0 0 40 24" width="40" height="24" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="18" cy="12" rx="14" ry="8" fill="var(--fish-primary)" opacity="0.7"/>
-                        <polygon points="32,12 40,6 40,18" fill="var(--fish-secondary)" opacity="0.6"/>
-                        <circle cx="10" cy="10" r="2" fill="var(--ocean-abyss)" opacity="0.8"/>
+                        <ellipse cx="22" cy="12" rx="14" ry="8" fill="var(--fish-primary)" opacity="0.7"/>
+                        <polygon points="8,12 0,6 0,18" fill="var(--fish-secondary)" opacity="0.6"/>
+                        <circle cx="30" cy="10" r="2" fill="var(--ocean-abyss)" opacity="0.8"/>
                     </svg>
                 </div>
             }

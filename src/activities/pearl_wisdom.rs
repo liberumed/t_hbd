@@ -48,6 +48,7 @@ fn PearlGame() -> impl IntoView {
     let pearls = RwSignal::new(Vec::<PearlData>::new());
     let pearl_caught = RwSignal::new(Vec::<RwSignal<bool>>::new());
     let message = RwSignal::new(String::from("Read the riddle, then catch the letters!"));
+    let completed_words = RwSignal::new(Vec::<&'static str>::new());
 
     let current_word = move || {
         let idx = word_index.get();
@@ -124,6 +125,7 @@ fn PearlGame() -> impl IntoView {
 
             let new_collected = collected.get();
             if new_collected.len() == word.len() {
+                completed_words.update(|w| w.push(word));
                 let idx = word_index.get();
                 if idx + 1 >= WORDS.len() {
                     message.set("All words found! You did it!".into());
@@ -149,6 +151,14 @@ fn PearlGame() -> impl IntoView {
                     <p>{message}</p>
                 </div>
             </div>
+
+            <Show when=move || !completed_words.get().is_empty()>
+                <div class="pearl-gathered-words">
+                    {move || completed_words.get().iter().map(|w| {
+                        view! { <span class="pearl-gathered-word">{*w}</span> }
+                    }).collect::<Vec<_>>()}
+                </div>
+            </Show>
 
             <div class="pearl-riddle-area">
                 <div class="pearl-hint-svg" inner_html=current_hint_svg></div>

@@ -90,10 +90,10 @@ fn CurrentGame() -> impl IntoView {
                 // Player fish
                 <div class="current-player" style=move || format!("top: {}%;", player_y.get())>
                     <svg viewBox="0 0 50 30" width="50" height="30" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="22" cy="15" rx="18" ry="10" fill="var(--fish-primary)"/>
-                        <polygon points="40,15 50,8 50,22" fill="var(--fish-secondary)"/>
-                        <circle cx="12" cy="12" r="3" fill="var(--ocean-abyss)"/>
-                        <circle cx="13" cy="11" r="1.2" fill="white"/>
+                        <ellipse cx="28" cy="15" rx="18" ry="10" fill="var(--fish-primary)"/>
+                        <polygon points="10,15 0,8 0,22" fill="var(--fish-secondary)"/>
+                        <circle cx="38" cy="12" r="3" fill="var(--ocean-abyss)"/>
+                        <circle cx="39" cy="11" r="1.2" fill="white"/>
                     </svg>
                 </div>
 
