@@ -1,0 +1,525 @@
+.activity-screen {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+}
+
+.activity-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-shadow: 0 1px 4px var(--text-shadow);
+}
+
+.activity-content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.wish-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 43, 69, 0.85);
+    animation: fade-in 0.5s ease-out;
+}
+
+.wish-card {
+    max-width: 500px;
+    padding: 2.5rem;
+    background: var(--speech-bg);
+    border: 2px solid var(--speech-border);
+    border-radius: 24px;
+    text-align: center;
+    animation: scale-bounce 0.5s ease-out;
+}
+
+.wish-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--ocean-abyss);
+    margin-bottom: 1.5rem;
+}
+
+/* Speech bubbles */
+
+.speech-bubble {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.8rem 1.2rem;
+    background: var(--speech-bg);
+    border: 1px solid var(--speech-border);
+    border-radius: 16px;
+    max-width: 400px;
+    margin: 0 auto;
+    animation: pop-in 0.4s ease-out;
+}
+
+.speech-bubble p {
+    color: var(--ocean-abyss);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.speech-creature {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+/* Activity 1: Pearl Wisdom */
+
+.pearl-wisdom {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0.5rem 1rem;
+    gap: 0.8rem;
+}
+
+.pearl-word-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.pearl-word-label {
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    opacity: 0.7;
+}
+
+.pearl-slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: all 0.3s;
+}
+
+.pearl-slot.filled {
+    background: var(--pearl);
+    border-color: var(--clam-primary);
+    color: var(--ocean-abyss);
+    animation: scale-bounce 0.3s ease-out;
+}
+
+.pearl-progress {
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+.pearl-field {
+    flex: 1;
+    position: relative;
+    min-height: 300px;
+}
+
+.pearl-bubble {
+    position: absolute;
+    bottom: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.5), var(--pearl) 50%, var(--clam-secondary));
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    color: var(--ocean-abyss);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: float-up 8s linear both;
+    transition: transform 0.15s;
+    font-family: inherit;
+}
+
+.pearl-bubble:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(245, 240, 255, 0.5);
+}
+
+/* Activity 2: Current Rider */
+
+.current-rider {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+}
+
+.current-counter {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--starfish);
+    position: relative;
+    z-index: 1;
+}
+
+.current-field {
+    flex: 1;
+    position: relative;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(74, 173, 186, 0.2), rgba(27, 107, 138, 0.3));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    cursor: none;
+    touch-action: none;
+    min-height: 300px;
+}
+
+.current-stream {
+    position: absolute;
+    height: 30px;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg,
+        transparent, rgba(168, 230, 240, 0.15) 20%,
+        rgba(168, 230, 240, 0.25) 50%,
+        rgba(168, 230, 240, 0.15) 80%, transparent
+    );
+    animation: swim-across 4s linear infinite;
+}
+
+.stream-1 { top: 20%; animation-duration: 3s; }
+.stream-2 { top: 50%; animation-duration: 5s; animation-delay: 1s; }
+.stream-3 { top: 75%; animation-duration: 4s; animation-delay: 2s; }
+
+.current-player {
+    position: absolute;
+    left: 8%;
+    transform: translateY(-50%);
+    transition: top 0.1s ease-out;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.starfish-item {
+    position: absolute;
+    font-size: 1.8rem;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+    animation: float-wobble 2s ease-in-out infinite;
+    z-index: 1;
+}
+
+.starfish-item:hover {
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+/* Activity 3: Coral Garden */
+
+.coral-garden {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+}
+
+.coral-palette {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.coral-palette-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.4rem 0.6rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    color: var(--text-primary);
+    font-family: inherit;
+}
+
+.coral-palette-item:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.coral-palette-item:active {
+    transform: scale(0.95);
+}
+
+.coral-name {
+    font-size: 0.65rem;
+    opacity: 0.7;
+}
+
+.coral-reef {
+    flex: 1;
+    position: relative;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(27, 107, 138, 0.2) 0%, var(--sand-light) 90%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    min-height: 250px;
+}
+
+.placed-coral {
+    position: absolute;
+    animation: pop-in 0.4s ease-out both;
+}
+
+.reef-life {
+    position: absolute;
+    font-size: 1.8rem;
+    animation: float-wobble 3s ease-in-out infinite, pop-in 0.5s ease-out;
+    z-index: 1;
+}
+
+.fish-life {
+    animation: swim-across 8s linear infinite, float-wobble 3s ease-in-out infinite;
+}
+
+.coral-life-msg {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--ponyo-primary);
+    font-weight: 600;
+    animation: slide-up 0.4s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+/* Activity 4: Deep Sea Lights */
+
+.deep-sea-lights {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0.5rem 1rem;
+    gap: 0.8rem;
+    align-items: center;
+    background: linear-gradient(180deg, #0D2B45 0%, #061220 100%);
+    border-radius: 0;
+}
+
+.lights-round {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    position: relative;
+    z-index: 1;
+}
+
+.lights-arena {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.light-creature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: all 0.3s;
+    justify-content: center;
+    color: var(--text-primary);
+    font-family: inherit;
+    position: relative;
+}
+
+.creature-glow {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--glow-color);
+    opacity: 0.15;
+    transition: all 0.3s;
+}
+
+.creature-name {
+    font-size: 0.6rem;
+    opacity: 0.5;
+    position: absolute;
+    bottom: 8px;
+}
+
+.light-creature.lit .creature-glow {
+    opacity: 1;
+    box-shadow: 0 0 30px var(--glow-color), 0 0 60px var(--glow-color);
+}
+
+.light-creature.lit {
+    border-color: var(--glow-color);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.light-creature:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.lights-start-btn {
+    position: relative;
+    z-index: 1;
+}
+
+/* Activity 5: Treasure Hunt */
+
+.treasure-hunt {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0.5rem 1rem;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.combination-lock {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.lock-digit {
+    width: 50px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    transition: all 0.4s;
+}
+
+.lock-digit.solved {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(255, 217, 61, 0.1);
+    animation: scale-bounce 0.4s ease-out;
+}
+
+.riddle-area {
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.riddle-question {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.riddle-hint {
+    font-size: 0.9rem;
+    color: var(--crab-secondary);
+    margin-bottom: 1rem;
+    animation: slide-up 0.4s ease-out;
+}
+
+.riddle-input-row {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.riddle-input {
+    padding: 10px 16px;
+    font-size: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    outline: none;
+    width: 200px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.riddle-input:focus {
+    border-color: var(--crab-primary);
+}
+
+.riddle-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.riddle-submit {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+}
+
+.treasure-chest {
+    margin-top: 1rem;
+    transition: transform 0.5s;
+    position: relative;
+    z-index: 1;
+}
+
+.treasure-chest.open {
+    animation: scale-bounce 0.6s ease-out;
+}
+
+.treasure-chest.open .chest-lid {
+    transform-origin: 60px 45px;
+    animation: chest-open 0.8s ease-out forwards;
+}
+
+@keyframes chest-open {
+    to {
+        transform: rotate(-60deg) translateY(-10px);
+    }
+}
