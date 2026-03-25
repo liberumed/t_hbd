@@ -24,8 +24,7 @@ pub fn wish_for(activity: &ActivityId) -> &'static str {
         ActivityId::TreasureHunt => concat!(
             "The greatest treasure in life is not gold or gems — ",
             "it is the people who love you and the memories you make together. ",
-            "Today, you are our greatest treasure. ",
-            "Happy 12th birthday!"
+            "Today, you are our greatest treasure."
         ),
     }
 }
