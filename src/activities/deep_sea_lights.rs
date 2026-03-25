@@ -41,13 +41,19 @@ fn LightsGame() -> impl IntoView {
     };
 
     let start_round = move || {
-        let len = round.get() + 2;
+        let len = match round.get() {
+            1 | 2 => 3,
+            3 | 4 => 4,
+            _     => 5,
+        };
         let seq = generate_sequence(len);
         sequence.set(seq);
         player_input.set(Vec::new());
+        permanently_lit.set(vec![false; 5]);
+        active_light.set(None);
         phase.set(Phase::Showing);
         message.set("Watch...".into());
-        play_sequence(sequence, active_light, phase);
+        play_sequence(sequence, active_light, phase, message);
     };
 
     let on_creature_click = move |idx: usize| {
@@ -74,7 +80,7 @@ fn LightsGame() -> impl IntoView {
             });
 
             let r = round.get();
-            if r >= 3 {
+            if r >= 5 {
                 message.set("The deep sea is alive with light!".into());
                 permanently_lit.set(vec![true; 5]);
                 complete.trigger();
@@ -96,7 +102,7 @@ fn LightsGame() -> impl IntoView {
             </div>
 
             <div class="lights-round">
-                {move || format!("Round {} / 3", round.get())}
+                {move || format!("Round {} / 5", round.get())}
             </div>
 
             <div class="lights-arena">
@@ -111,17 +117,23 @@ fn LightsGame() -> impl IntoView {
                     };
 
                     view! {
-                        <button
-                            class=class
-                            style=format!("--glow-color: {};", color)
-                            on:click=move |_| on_creature_click(i)
-                        >
-                            <div class="creature-glow"></div>
+                        <div class="creature-slot">
+                            <button
+                                class=class
+                                style=format!("--glow-color: {};", color)
+                                on:click=move |_| on_creature_click(i)
+                            >
+                                <div class="creature-glow"></div>
+                            </button>
                             <span class="creature-name">{name}</span>
-                        </button>
+                        </div>
                     }
                 }).collect::<Vec<_>>()}
             </div>
+
+            <Show when=move || phase.get() == Phase::Input>
+                <div class="lights-your-turn">"✨ Your turn! ✨"</div>
+            </Show>
 
             <Show when=move || phase.get() == Phase::Waiting>
                 <button class="btn-primary lights-start-btn" on:click=move |_| start_round()>
@@ -143,6 +155,7 @@ fn play_sequence(
     sequence: RwSignal<Vec<usize>>,
     active_light: RwSignal<Option<usize>>,
     phase: RwSignal<Phase>,
+    message: RwSignal<String>,
 ) {
     let seq = sequence.get();
     let total = seq.len();
@@ -165,6 +178,7 @@ fn play_sequence(
     let finish_delay = (total as u32) * 1000 + 800;
     let timeout_done = Timeout::new(finish_delay, move || {
         phase.set(Phase::Input);
+        message.set("Your turn! Repeat the sequence!".into());
     });
     timeout_done.forget();
 }

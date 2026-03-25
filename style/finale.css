@@ -13,34 +13,22 @@
     overflow-y: auto;
 }
 
-.finale-creatures {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    padding-top: 1rem;
-}
-
-.finale-creature {
-    font-size: 2.5rem;
-    opacity: 0;
-    animation: pop-in 0.6s ease-out both;
-}
-
 .finale-wishes {
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    max-width: 550px;
+    gap: 0.7rem;
+    max-width: 580px;
     width: 100%;
     padding: 0 1rem;
 }
 
 .finale-wish {
-    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.7rem 1rem;
     background: rgba(255, 255, 255, 0.06);
     border-left: 3px solid var(--gold);
     border-radius: 0 12px 12px 0;
@@ -54,17 +42,28 @@
 .finale-wish:nth-child(4) { animation-delay: 4.5s; }
 .finale-wish:nth-child(5) { animation-delay: 5.5s; }
 
+.finale-wish-icon {
+    flex-shrink: 0;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.finale-wish-text {
+    flex: 1;
+    min-width: 0;
+}
+
 .finale-wish h3 {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--gold);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .finale-wish p {
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 0.85rem;
+    line-height: 1.5;
     color: var(--text-primary);
     opacity: 0.9;
 }
@@ -84,7 +83,10 @@
 .axolotl-svg {
     width: 160px;
     height: 160px;
-    filter: drop-shadow(0 0 20px var(--axolotl-glow));
+    filter:
+        drop-shadow(0 0 18px rgba(255, 255, 255, 0.5))
+        drop-shadow(0 0 35px var(--axolotl-glow))
+        drop-shadow(0 0 8px #FFA040);
 }
 
 .axolotl-body-group {
@@ -140,6 +142,6 @@
     z-index: 1;
     opacity: 0;
     animation: fade-in 1s ease-out 8.5s both;
-    margin-top: 0.5rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
 }

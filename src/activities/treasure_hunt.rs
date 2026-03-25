@@ -7,6 +7,7 @@ struct Riddle {
     question: &'static str,
     answers: &'static [&'static str],
     hint: &'static str,
+    hint_icon: &'static str,
     digit: char,
 }
 
@@ -15,18 +16,21 @@ const RIDDLES: [Riddle; 3] = [
         question: "I have cities but no houses, forests but no trees, and water but no fish. What am I?",
         answers: &["map", "a map"],
         hint: "Explorers carry me in their pockets...",
+        hint_icon: "🗺️",
         digit: '3',
     },
     Riddle {
         question: "The more you take, the more you leave behind. What am I?",
         answers: &["footsteps", "steps", "footstep"],
         hint: "Look down at the sand when you walk...",
+        hint_icon: "👣",
         digit: '7',
     },
     Riddle {
         question: "I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?",
         answers: &["echo", "an echo"],
         hint: "Try shouting into a cave...",
+        hint_icon: "🪨",
         digit: '1',
     },
 ];

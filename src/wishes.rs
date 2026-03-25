@@ -19,8 +19,7 @@ pub fn wish_for(activity: &ActivityId) -> &'static str {
         ActivityId::DeepSeaLights => concat!(
             "Even in the darkest depths, there is light — ",
             "and you carry that light inside you. ",
-            "Your kindness, your smile, your energy lights up everyone around you. ",
-            "At 12, you shine brighter than ever."
+            "Your kindness, your smile, your energy lights up everyone around you."
         ),
         ActivityId::TreasureHunt => concat!(
             "The greatest treasure in life is not gold or gems — ",
@@ -32,5 +31,5 @@ pub fn wish_for(activity: &ActivityId) -> &'static str {
 }
 
 pub fn finale_message() -> &'static str {
-    "Happy 12th Birthday!"
+    "Happy Birthday, Tymur!"
 }
