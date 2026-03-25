@@ -14,8 +14,7 @@ pub fn wish_for(activity: &ActivityId) -> &'static str {
         ActivityId::CoralGarden => concat!(
             "You are like a coral reef — you make the world around you ",
             "more colorful and alive. Everything you build, everything you create, ",
-            "brings joy to others. Keep building, keep creating. ",
-            "The ocean needs your colors."
+            "brings joy to others."
         ),
         ActivityId::DeepSeaLights => concat!(
             "Even in the darkest depths, there is light — ",

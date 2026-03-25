@@ -52,9 +52,12 @@ fn CoralGame() -> impl IntoView {
         let n = count.get();
 
         match n {
-            3 => life_message.set("Small fish appear nearby!".into()),
-            5 => life_message.set("A seahorse joins the reef!".into()),
-            7 => life_message.set("An octopus peeks from behind!".into()),
+            3  => life_message.set("Small fish appear nearby!".into()),
+            5  => life_message.set("A squid drifts in!".into()),
+            7  => life_message.set("An octopus peeks from behind!".into()),
+            9  => life_message.set("A jellyfish drifts by!".into()),
+            11 => life_message.set("A dolphin leaps with joy!".into()),
+            13 => life_message.set("A whale watches from the deep!".into()),
             _ if n >= NEEDED => {
                 message.set("Beautiful! Your reef is alive!".into());
                 life_message.set("The reef is teeming with life!".into());
@@ -99,13 +102,22 @@ fn CoralGame() -> impl IntoView {
 
             <div class="coral-reef">
                 <Show when=move || { count.get() >= 3 }>
-                    <span class="reef-life fish-life" style="left: 20%; bottom: 40%;">"🐠"</span>
+                    <span class="reef-life" style="left: 20%; bottom: 40%;">"🐠"</span>
                 </Show>
                 <Show when=move || { count.get() >= 5 }>
-                    <span class="reef-life" style="left: 70%; bottom: 45%;">"🦈"</span>
+                    <span class="reef-life" style="left: 75%; bottom: 55%;">"🦑"</span>
                 </Show>
                 <Show when=move || { count.get() >= 7 }>
-                    <span class="reef-life" style="left: 50%; bottom: 50%;">"🐙"</span>
+                    <span class="reef-life" style="left: 50%; bottom: 48%;">"🐙"</span>
+                </Show>
+                <Show when=move || { count.get() >= 9 }>
+                    <span class="reef-life" style="left: 10%; bottom: 60%;">"🪼"</span>
+                </Show>
+                <Show when=move || { count.get() >= 11 }>
+                    <span class="reef-life" style="left: 60%; bottom: 65%;">"🐬"</span>
+                </Show>
+                <Show when=move || { count.get() >= 13 }>
+                    <span class="reef-life" style="left: 35%; bottom: 72%;">"🐋"</span>
                 </Show>
 
                 {move || placed_corals.get().iter().enumerate().map(|(i, coral)| {
@@ -164,18 +176,18 @@ fn coral_svg(coral_type: usize) -> &'static str {
         _ => r##"<line x1="20" y1="44" x2="20" y2="50" stroke="var(--coral-color, #5B8CDB)" stroke-width="4" stroke-linecap="round"/>
 <line x1="12" y1="46" x2="14" y2="50" stroke="var(--coral-color, #5B8CDB)" stroke-width="3" stroke-linecap="round"/>
 <line x1="28" y1="46" x2="26" y2="50" stroke="var(--coral-color, #5B8CDB)" stroke-width="3" stroke-linecap="round"/>
-<circle cx="20" cy="21" r="8" fill="var(--coral-color, #5B8CDB)" opacity="0.9"/>
-<circle cx="20" cy="10" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
-<circle cx="29" cy="14" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
-<circle cx="32" cy="24" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
-<circle cx="11" cy="14" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
-<circle cx="8" cy="24" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
-<circle cx="20" cy="21" r="4" fill="white" opacity="0.4"/>
-<circle cx="20" cy="10" r="2" fill="white" opacity="0.5"/>
-<circle cx="29" cy="14" r="2" fill="white" opacity="0.5"/>
-<circle cx="32" cy="24" r="2" fill="white" opacity="0.5"/>
-<circle cx="11" cy="14" r="2" fill="white" opacity="0.5"/>
-<circle cx="8" cy="24" r="2" fill="white" opacity="0.5"/>"##,
+<circle cx="20" cy="35" r="8" fill="var(--coral-color, #5B8CDB)" opacity="0.9"/>
+<circle cx="20" cy="24" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
+<circle cx="29" cy="28" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
+<circle cx="32" cy="38" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
+<circle cx="11" cy="28" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
+<circle cx="8" cy="38" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
+<circle cx="20" cy="35" r="4" fill="white" opacity="0.4"/>
+<circle cx="20" cy="24" r="2" fill="white" opacity="0.5"/>
+<circle cx="29" cy="28" r="2" fill="white" opacity="0.5"/>
+<circle cx="32" cy="38" r="2" fill="white" opacity="0.5"/>
+<circle cx="11" cy="28" r="2" fill="white" opacity="0.5"/>
+<circle cx="8" cy="38" r="2" fill="white" opacity="0.5"/>"##,
     }
 }
 
