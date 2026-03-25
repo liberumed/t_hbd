@@ -128,10 +128,7 @@ pub fn PonyoSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
 
             // === HAIR (drawn first, face circle covers center seam) ===
             // hair mass behind head — big orange-red blob
-            <ellipse cx="35" cy="30" rx="28" ry="26" fill="#C83020"/>
-            // side hangs — hair coming down past face
-            <ellipse cx="8" cy="44" rx="9" ry="16" fill="#C83020"/>
-            <ellipse cx="62" cy="44" rx="9" ry="16" fill="#C83020"/>
+            <ellipse cx="35" cy="30" rx="30" ry="26" fill="#C83020"/>
             // top spiky clumps
             <ellipse cx="25" cy="14" rx="7" ry="9" fill="#D03828" transform="rotate(-20 25 14)"/>
             <ellipse cx="35" cy="10" rx="7" ry="10" fill="#C83020"/>
@@ -143,6 +140,10 @@ pub fn PonyoSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
             // round head — covers hair center, sits on cheeks
             <ellipse cx="35" cy="38" rx="30" ry="26" fill="#e5c193"/>
 
+            // fringe — bangs drawn over face, hangs onto forehead
+            <path d="M9 16 Q15 24 22 18 Q28 26 35 19 Q42 26 48 18 Q55 24 61 16 Q50 10 35 8 Q20 10 9 16 Z"
+                  fill="#C83020"/>
+
             // eyes
             <circle cx="12" cy="40" r="6.5" fill="white" stroke="#1a1020" stroke-width="1"/>
             <circle cx="58" cy="40" r="6.5" fill="white" stroke="#1a1020" stroke-width="1"/>
@@ -150,11 +151,11 @@ pub fn PonyoSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
             <circle cx="56" cy="39" r="3" fill="#1a1020"/>
 
             // nose
-            <path d="M33 51 Q35 48 37 51" fill="none" stroke="#a07040"
+            <path d="M33 44 Q35 41 37 44" fill="none" stroke="#a07040"
                   stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
 
             // mouth — small diamond
-            <path d="M35 55 L38 58 L35 61 L32 58 Z" fill="#1a1020"/>
+            <path d="M35 59 L38 62 L35 65 L32 62 Z" fill="#1a1020"/>
         </svg>
     }
 }
