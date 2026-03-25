@@ -52,8 +52,8 @@ pub fn FinaleScreen() -> impl IntoView {
                             <ellipse cx="154" cy="245" rx="10" ry="6" fill="#F4A0B8"/>
 
                             // === HEAD ===
-                            <ellipse cx="110" cy="94" rx="66" ry="62" fill="#F4A0B8"/>
-                            <ellipse cx="94" cy="70" rx="34" ry="20" fill="white" opacity="0.17"/>
+                            <ellipse cx="110" cy="94" rx="70" ry="48" fill="#F4A0B8"/>
+                            <ellipse cx="94" cy="74" rx="34" ry="15" fill="white" opacity="0.17"/>
 
                             // === LEFT GILLS (5-branch fan) ===
                             <g class="gill-left">
@@ -114,16 +114,14 @@ pub fn FinaleScreen() -> impl IntoView {
                             <ellipse cx="173" cy="186" rx="10" ry="6" fill="#F4A0B8"/>
 
                             // === EYES ===
-                            <circle cx="84" cy="98" r="19" fill="white"/>
-                            <circle cx="136" cy="98" r="19" fill="white"/>
-                            <circle cx="86" cy="100" r="14" fill="#6D2040"/>
-                            <circle cx="138" cy="100" r="14" fill="#6D2040"/>
-                            <circle cx="87" cy="101" r="8" fill="#1a0810"/>
-                            <circle cx="139" cy="101" r="8" fill="#1a0810"/>
-                            <circle cx="78" cy="92" r="6" fill="white"/>
-                            <circle cx="130" cy="92" r="6" fill="white"/>
-                            <circle cx="91" cy="108" r="2.5" fill="white" opacity="0.55"/>
-                            <circle cx="143" cy="108" r="2.5" fill="white" opacity="0.55"/>
+                            <circle cx="76" cy="98" r="19" fill="white"/>
+                            <circle cx="144" cy="98" r="19" fill="white"/>
+                            <circle cx="79" cy="100" r="10" fill="#1a0810"/>
+                            <circle cx="147" cy="100" r="10" fill="#1a0810"/>
+                            <circle cx="72" cy="93" r="5" fill="white"/>
+                            <circle cx="140" cy="93" r="5" fill="white"/>
+                            <circle cx="83" cy="107" r="2" fill="white" opacity="0.55"/>
+                            <circle cx="151" cy="107" r="2" fill="white" opacity="0.55"/>
 
                             // === FRECKLES ===
                             <circle cx="96" cy="78" r="2" fill="#E080A0" opacity="0.35"/>
@@ -136,8 +134,8 @@ pub fn FinaleScreen() -> impl IntoView {
                             <circle cx="106" cy="112" r="2.5" fill="#C07090" opacity="0.5"/>
                             <circle cx="114" cy="112" r="2.5" fill="#C07090" opacity="0.5"/>
 
-                            // === MOUTH (subtle smirk) ===
-                            <path d="M100 122 Q110 130 120 124" fill="none" stroke="#C06080"
+                            // === MOUTH (smirk — asymmetric, right corner up) ===
+                            <path d="M103 128 Q108 130 114 126" fill="none" stroke="#C06080"
                                   stroke-width="2.5" stroke-linecap="round"/>
                         </g>
                     </svg>
