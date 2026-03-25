@@ -114,3 +114,60 @@ pub fn ClownFishSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
         </svg>
     }
 }
+
+#[component]
+pub fn PonyoSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
+    view! {
+        <svg width=size height=size viewBox="0 0 70 82" xmlns="http://www.w3.org/2000/svg"
+             class="creature-svg ponyo-svg">
+
+            // === BODY ===
+            <ellipse cx="35" cy="74" rx="14" ry="7" fill="#E05070"/>
+            <path d="M24 78 Q35 84 46 78 Q40 72 35 73 Q30 72 24 78 Z" fill="#C84060"/>
+            <path d="M23 70 Q35 76 47 70 Q43 64 35 65 Q27 64 23 70 Z" fill="white" opacity="0.9"/>
+
+            // === HAIR (drawn first, face circle covers center seam) ===
+            // hair mass behind head — big orange-red blob
+            <ellipse cx="35" cy="30" rx="24" ry="22" fill="#C83020"/>
+            // side hangs — hair coming down past face
+            <ellipse cx="13" cy="44" rx="8" ry="14" fill="#C83020"/>
+            <ellipse cx="57" cy="44" rx="8" ry="14" fill="#C83020"/>
+            // top spiky clumps
+            <ellipse cx="25" cy="14" rx="7" ry="9" fill="#D03828" transform="rotate(-20 25 14)"/>
+            <ellipse cx="35" cy="10" rx="7" ry="10" fill="#C83020"/>
+            <ellipse cx="45" cy="14" rx="7" ry="9" fill="#D03828" transform="rotate(20 45 14)"/>
+
+            // === FACE (drawn on top — no stroke to avoid seam lines) ===
+            // cheek ellipse — wider at bottom
+            <ellipse cx="35" cy="54" rx="22" ry="13" fill="#e5c193"/>
+            // round head — covers hair center, sits on cheeks
+            <circle cx="35" cy="38" r="20" fill="#e5c193"/>
+
+            // rosy cheeks
+            <ellipse cx="16" cy="52" rx="6" ry="4" fill="#e8907a" opacity="0.45"/>
+            <ellipse cx="54" cy="52" rx="6" ry="4" fill="#e8907a" opacity="0.45"/>
+
+            // eyebrows
+            <path d="M21 31 Q27 27 32 30" fill="none" stroke="#7a2010"
+                  stroke-width="2" stroke-linecap="round"/>
+            <path d="M38 30 Q43 27 49 31" fill="none" stroke="#7a2010"
+                  stroke-width="2" stroke-linecap="round"/>
+
+            // eyes
+            <circle cx="26" cy="40" r="7" fill="white"/>
+            <circle cx="44" cy="40" r="7" fill="white"/>
+            <circle cx="26" cy="41" r="4.5" fill="#1a1020"/>
+            <circle cx="44" cy="41" r="4.5" fill="#1a1020"/>
+            <circle cx="27.5" cy="39" r="1.8" fill="white"/>
+            <circle cx="45.5" cy="39" r="1.8" fill="white"/>
+
+            // nose
+            <circle cx="33" cy="49" r="1.3" fill="#a07040" opacity="0.6"/>
+            <circle cx="37" cy="49" r="1.3" fill="#a07040" opacity="0.6"/>
+
+            // mouth
+            <path d="M29 56 Q35 61 41 56"
+                  fill="none" stroke="#a07040" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+    }
+}

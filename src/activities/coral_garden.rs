@@ -2,6 +2,7 @@ use leptos::prelude::*;
 use rand::Rng;
 use super::{ActivityWrapper, ActivityCompleteSignal};
 use crate::state::ActivityId;
+use crate::creatures::PonyoSvg;
 
 const CORAL_TYPES: [(&str, &str); 6] = [
     ("Branch", "var(--crab-primary)"),
@@ -11,7 +12,7 @@ const CORAL_TYPES: [(&str, &str); 6] = [
     ("Mushroom", "var(--ocean-mid)"),
     ("Flower", "#5B8CDB"),
 ];
-const NEEDED: usize = 8;
+const NEEDED: usize = 15;
 
 #[component]
 pub fn CoralGardenActivity() -> impl IntoView {
@@ -71,7 +72,7 @@ fn CoralGame() -> impl IntoView {
         <div class="coral-garden">
             <div class="coral-speech">
                 <div class="speech-bubble ponyo-speech">
-                    <span class="speech-creature">"🫧"</span>
+                    <span class="speech-creature"><PonyoSvg size=52 /></span>
                     <p>{message}</p>
                 </div>
             </div>
@@ -86,8 +87,9 @@ fn CoralGame() -> impl IntoView {
                             style=format!("--coral-color: {};", color)
                             on:click=move |_| place_coral(i)
                         >
-                            <svg viewBox="0 0 40 50" width="40" height="50" xmlns="http://www.w3.org/2000/svg">
-                                {coral_svg(i)}
+                            <svg viewBox="0 0 40 50" width="40" height="50"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 inner_html=coral_svg(i)>
                             </svg>
                             <span class="coral-name">{name}</span>
                         </button>
@@ -115,9 +117,10 @@ fn CoralGame() -> impl IntoView {
                     let color = CORAL_TYPES[coral.coral_type].1;
                     view! {
                         <div class="placed-coral" style=style>
-                            <svg viewBox="0 0 40 50" width="40" height="50" xmlns="http://www.w3.org/2000/svg"
-                                 style=format!("--coral-color: {};", color)>
-                                {coral_svg(coral.coral_type)}
+                            <svg viewBox="0 0 40 50" width="40" height="50"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 style=format!("--coral-color: {};", color)
+                                 inner_html=coral_svg(coral.coral_type)>
                             </svg>
                         </div>
                     }
@@ -133,12 +136,46 @@ fn CoralGame() -> impl IntoView {
 
 fn coral_svg(coral_type: usize) -> &'static str {
     match coral_type {
-        0 => r##"<path d="M20 50 L20 30 L10 15 M20 30 L30 10 M20 35 L12 25" fill="none" stroke="var(--coral-color, #E85D3A)" stroke-width="4" stroke-linecap="round"/>"##,
-        1 => r##"<ellipse cx="20" cy="30" rx="15" ry="12" fill="var(--coral-color, #8B5DAF)" opacity="0.8"/><path d="M10 28 Q15 22 20 28 Q25 22 30 28" fill="none" stroke="var(--coral-color, #8B5DAF)" stroke-width="1.5" opacity="0.5"/>"##,
-        2 => r##"<path d="M20 50 L20 35 Q5 25 10 10 Q20 20 30 10 Q35 25 20 35" fill="var(--coral-color, #FF6B8A)" opacity="0.7"/>"##,
-        3 => r##"<rect x="15" y="10" width="10" height="40" rx="5" fill="var(--coral-color, #FFD93D)" opacity="0.7"/><ellipse cx="20" cy="10" rx="7" ry="4" fill="var(--coral-color, #FFD93D)" opacity="0.5"/>"##,
-        4 => r##"<path d="M20 50 L20 30" stroke="var(--coral-color, #4AADBA)" stroke-width="4" stroke-linecap="round"/><ellipse cx="20" cy="22" rx="14" ry="10" fill="var(--coral-color, #4AADBA)" opacity="0.7"/>"##,
-        _ => r##"<circle cx="20" cy="20" r="10" fill="var(--coral-color, #5B8CDB)" opacity="0.7"/><circle cx="14" cy="28" r="7" fill="var(--coral-color, #5B8CDB)" opacity="0.5"/><circle cx="28" cy="27" r="8" fill="var(--coral-color, #5B8CDB)" opacity="0.6"/><path d="M20 35 L20 50" stroke="var(--coral-color, #5B8CDB)" stroke-width="3"/>"##,
+        // Branch: multi-level branching tree
+        0 => r##"<path d="M20 50 L20 36 M20 36 L11 22 M11 22 L6 11 M11 22 L16 10 M20 36 L29 22 M29 22 L24 10 M29 22 L34 11 M20 43 L13 33 M20 43 L27 33" stroke="var(--coral-color, #E85D3A)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>"##,
+        // Brain: round dome with wavy maze grooves
+        1 => r##"<circle cx="20" cy="26" r="16" fill="var(--coral-color, #8B5DAF)" opacity="0.9"/>
+<path d="M7 21 Q10 17 13 21 Q16 17 19 21 Q22 17 25 21 Q28 17 31 21 Q33 17 34 21" fill="none" stroke="white" stroke-width="1.8" opacity="0.45" stroke-linecap="round"/>
+<path d="M5 27 Q8 23 11 27 Q14 23 17 27 Q20 23 23 27 Q26 23 29 27 Q32 23 35 27" fill="none" stroke="white" stroke-width="1.8" opacity="0.45" stroke-linecap="round"/>
+<path d="M7 33 Q10 29 13 33 Q16 29 19 33 Q22 29 25 33 Q28 29 31 33 Q33 29 34 33" fill="none" stroke="white" stroke-width="1.8" opacity="0.45" stroke-linecap="round"/>"##,
+        // Fan: wide spreading fan with vein lines
+        2 => r##"<line x1="20" y1="50" x2="20" y2="38" stroke="var(--coral-color, #FF6B8A)" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M20 38 Q4 28 3 12 Q10 5 20 22 Q30 5 37 12 Q36 28 20 38 Z" fill="var(--coral-color, #FF6B8A)" opacity="0.75"/>
+<path d="M20 38 L20 16 M20 32 L10 20 M20 32 L30 20 M20 35 L13 25 M20 35 L27 25" fill="none" stroke="white" stroke-width="0.9" opacity="0.4"/>"##,
+        // Tube: three tubes of different heights
+        3 => r##"<rect x="8" y="22" width="8" height="28" rx="4" fill="var(--coral-color, #FFD93D)" opacity="0.9"/>
+<rect x="16" y="12" width="8" height="38" rx="4" fill="var(--coral-color, #FFD93D)" opacity="0.9"/>
+<rect x="24" y="18" width="8" height="32" rx="4" fill="var(--coral-color, #FFD93D)" opacity="0.9"/>
+<ellipse cx="12" cy="22" rx="4" ry="2.5" fill="white" opacity="0.35"/>
+<ellipse cx="20" cy="12" rx="4" ry="2.5" fill="white" opacity="0.35"/>
+<ellipse cx="28" cy="18" rx="4" ry="2.5" fill="white" opacity="0.35"/>"##,
+        // Mushroom: flat wide cap on short stalk with radial texture
+        4 => r##"<rect x="17" y="38" width="6" height="12" rx="3" fill="var(--coral-color, #4AADBA)" opacity="0.85"/>
+<ellipse cx="20" cy="36" rx="17" ry="9" fill="var(--coral-color, #4AADBA)" opacity="0.95"/>
+<ellipse cx="20" cy="33" rx="14" ry="7" fill="var(--coral-color, #4AADBA)" opacity="0.6"/>
+<path d="M5 38 Q20 44 35 38" fill="none" stroke="white" stroke-width="1" opacity="0.3"/>
+<path d="M9 40 Q20 45 31 40" fill="none" stroke="white" stroke-width="1" opacity="0.25"/>"##,
+        // Flower: anemone with petal-tip tentacles around a center
+        _ => r##"<line x1="20" y1="44" x2="20" y2="50" stroke="var(--coral-color, #5B8CDB)" stroke-width="4" stroke-linecap="round"/>
+<line x1="12" y1="46" x2="14" y2="50" stroke="var(--coral-color, #5B8CDB)" stroke-width="3" stroke-linecap="round"/>
+<line x1="28" y1="46" x2="26" y2="50" stroke="var(--coral-color, #5B8CDB)" stroke-width="3" stroke-linecap="round"/>
+<circle cx="20" cy="21" r="8" fill="var(--coral-color, #5B8CDB)" opacity="0.9"/>
+<circle cx="20" cy="10" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
+<circle cx="29" cy="14" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
+<circle cx="32" cy="24" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
+<circle cx="11" cy="14" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
+<circle cx="8" cy="24" r="5" fill="var(--coral-color, #5B8CDB)" opacity="0.85"/>
+<circle cx="20" cy="21" r="4" fill="white" opacity="0.4"/>
+<circle cx="20" cy="10" r="2" fill="white" opacity="0.5"/>
+<circle cx="29" cy="14" r="2" fill="white" opacity="0.5"/>
+<circle cx="32" cy="24" r="2" fill="white" opacity="0.5"/>
+<circle cx="11" cy="14" r="2" fill="white" opacity="0.5"/>
+<circle cx="8" cy="24" r="2" fill="white" opacity="0.5"/>"##,
     }
 }
 
