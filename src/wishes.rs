@@ -9,8 +9,7 @@ pub fn wish_for(activity: &ActivityId) -> &'static str {
         ActivityId::CurrentRider => concat!(
             "Life will have currents that push and pull, ",
             "but you have the strength to find your own way. ",
-            "Every detour is just a new adventure. ",
-            "Happy 12th birthday to someone who can ride any wave!"
+            "Every detour is just a new adventure."
         ),
         ActivityId::CoralGarden => concat!(
             "You are like a coral reef — you make the world around you ",

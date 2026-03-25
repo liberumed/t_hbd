@@ -48,3 +48,69 @@ pub fn ClamSvg(#[prop(default = 48)] size: u32) -> impl IntoView {
 pub fn ClamIcon() -> impl IntoView {
     view! { <ClamSvg size=36 /> }
 }
+
+#[component]
+pub fn ClownFishSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
+    view! {
+        <svg width=size height=size viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg"
+             class="creature-svg clownfish-svg">
+            <defs>
+                <clipPath id="cf-body-clip">
+                    <ellipse cx="41" cy="32" rx="27" ry="22"/>
+                </clipPath>
+            </defs>
+
+            // forked tail — traces outer edge, notch, back; no self-intersect
+            <path d="M16 27
+                     C10 22 2 14 2 10
+                     C4 16 10 26 12 32
+                     C10 38 4 48 2 54
+                     C2 50 10 42 16 37
+                     Z"
+                  fill="#E8650A" stroke="#2a1000" stroke-width="1.5"
+                  stroke-linejoin="round"/>
+
+            // body — orange
+            <ellipse cx="41" cy="32" rx="27" ry="22"
+                     fill="#F4821F" stroke="#2a1000" stroke-width="2"/>
+
+            // white stripes clipped to body shape
+            <g clip-path="url(#cf-body-clip)">
+                // stripe near head
+                <rect x="53" y="6" width="14" height="52" fill="white"/>
+                <rect x="53" y="6" width="14" height="52" fill="none"
+                      stroke="#2a1000" stroke-width="1.5"/>
+                // stripe mid-body
+                <rect x="36" y="6" width="9" height="52" fill="white"/>
+                <rect x="36" y="6" width="9" height="52" fill="none"
+                      stroke="#2a1000" stroke-width="1.5"/>
+            </g>
+
+            // body outline redrawn on top of stripes
+            <ellipse cx="41" cy="32" rx="27" ry="22"
+                     fill="none" stroke="#2a1000" stroke-width="2"/>
+
+            // dorsal fin
+            <path d="M34 10 Q40 1 51 3 Q55 10 53 13"
+                  fill="#F4821F" stroke="#2a1000" stroke-width="1.4"/>
+
+            // bottom fin
+            <path d="M34 54 Q40 63 49 61 Q52 54 50 51"
+                  fill="#F4821F" stroke="#2a1000" stroke-width="1.4"/>
+
+            // pectoral fin
+            <path d="M49 38 Q61 48 58 54 Q49 49 47 40 Z"
+                  fill="#E8650A" stroke="#2a1000" stroke-width="1.2"/>
+
+            // eye — large and expressive
+            <circle cx="64" cy="25" r="7.5" fill="white" stroke="#2a1000" stroke-width="1.8"/>
+            <circle cx="65" cy="25" r="5" fill="#1a4a7a"/>
+            <circle cx="65.5" cy="25" r="2.8" fill="#050d1a"/>
+            <circle cx="67" cy="22.5" r="1.8" fill="white"/>
+
+            // smile
+            <path d="M60 32 Q64 36 68 32"
+                  fill="none" stroke="#2a1000" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+    }
+}

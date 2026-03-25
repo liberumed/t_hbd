@@ -240,6 +240,12 @@ html, body {
     height: 100%;
 }
 
+/* Clown Fish SVG */
+
+.clownfish-svg {
+    animation: gentle-bob 2s ease-in-out infinite;
+}
+
 /* Clam SVG */
 
 .clam-svg .clam-top-shell {
