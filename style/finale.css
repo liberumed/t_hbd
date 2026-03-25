@@ -81,11 +81,11 @@
 }
 
 .axolotl-svg {
-    width: 160px;
-    height: 160px;
+    width: 176px;
+    height: 200px;
     filter:
-        drop-shadow(0 0 18px rgba(255, 255, 255, 0.5))
-        drop-shadow(0 0 35px var(--axolotl-glow))
+        drop-shadow(0 0 18px rgba(255, 255, 255, 0.4))
+        drop-shadow(0 0 30px #FFB0D0)
         drop-shadow(0 0 8px #FFA040);
 }
 
@@ -94,17 +94,17 @@
 }
 
 .gill-left {
-    transform-origin: 65px 65px;
+    transform-origin: 50px 82px;
     animation: gill-wave-left 1.5s ease-in-out infinite;
 }
 
 .gill-right {
-    transform-origin: 135px 65px;
+    transform-origin: 170px 82px;
     animation: gill-wave-right 1.5s ease-in-out infinite;
 }
 
 .axolotl-tail {
-    transform-origin: 100px 145px;
+    transform-origin: 88px 215px;
     animation: tail-sway 2s ease-in-out infinite;
 }
 
