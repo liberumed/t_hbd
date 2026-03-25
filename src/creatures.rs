@@ -118,13 +118,21 @@ pub fn ClownFishSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
 #[component]
 pub fn PonyoSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
     view! {
-        <svg width=size height=size viewBox="0 0 70 82" xmlns="http://www.w3.org/2000/svg"
+        <svg width=size height=size viewBox="0 0 70 108" xmlns="http://www.w3.org/2000/svg"
              class="creature-svg ponyo-svg">
 
             // === BODY ===
-            <ellipse cx="35" cy="74" rx="14" ry="7" fill="#E05070"/>
-            <path d="M24 78 Q35 84 46 78 Q40 72 35 73 Q30 72 24 78 Z" fill="#C84060"/>
-            <path d="M23 70 Q35 76 47 70 Q43 64 35 65 Q27 64 23 70 Z" fill="white" opacity="0.9"/>
+            // main body — bigger
+            <ellipse cx="35" cy="84" rx="22" ry="26" fill="#E05070"/>
+            // wiggly bottom edge
+            <path d="M13 104 Q18 116 24 104 Q30 116 36 104 Q42 116 48 104 Q52 114 57 104 L13 104 Z"
+                  fill="#E05070"/>
+            // white belly — smaller
+            <ellipse cx="35" cy="83" rx="10" ry="12" fill="white" opacity="0.88"/>
+
+            // fins as hands — left and right
+            <ellipse cx="11" cy="82" rx="5" ry="8" fill="#E05070" transform="rotate(50 11 82)"/>
+            <ellipse cx="59" cy="82" rx="5" ry="8" fill="#E05070" transform="rotate(-50 59 82)"/>
 
             // === HAIR (drawn first, face circle covers center seam) ===
             // hair mass behind head — big orange-red blob
