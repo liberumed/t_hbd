@@ -7,7 +7,7 @@ pub fn ClamSvg(#[prop(default = 48)] size: u32) -> impl IntoView {
              class="creature-svg clam-svg">
             // bottom shell
             <path d="M8 36 Q8 56 32 58 Q56 56 56 36 Z"
-                  fill="var(--clam-primary)" stroke="var(--clam-secondary)" stroke-width="1.5"/>
+                  fill="var(--clam-primary)" stroke="var(--clam-secondary)" stroke-width="1"/>
             // bottom shell ridges
             <path d="M16 40 Q24 52 32 54" fill="none" stroke="var(--clam-secondary)"
                   stroke-width="1" opacity="0.5"/>
@@ -18,7 +18,7 @@ pub fn ClamSvg(#[prop(default = 48)] size: u32) -> impl IntoView {
             // top shell
             <g class="clam-top-shell">
                 <path d="M8 36 Q8 14 32 10 Q56 14 56 36 Z"
-                      fill="var(--clam-primary)" stroke="var(--clam-secondary)" stroke-width="1.5"/>
+                      fill="var(--clam-primary)" stroke="var(--clam-secondary)" stroke-width="1"/>
                 // top shell ridges
                 <path d="M16 32 Q24 18 32 14" fill="none" stroke="var(--clam-secondary)"
                       stroke-width="1" opacity="0.5"/>
@@ -79,11 +79,11 @@ pub fn ClownFishSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
                 // stripe near head
                 <rect x="53" y="6" width="14" height="52" fill="white"/>
                 <rect x="53" y="6" width="14" height="52" fill="none"
-                      stroke="#2a1000" stroke-width="1.5"/>
+                      stroke="#2a1000" stroke-width="1"/>
                 // stripe mid-body
                 <rect x="36" y="6" width="9" height="52" fill="white"/>
                 <rect x="36" y="6" width="9" height="52" fill="none"
-                      stroke="#2a1000" stroke-width="1.5"/>
+                      stroke="#2a1000" stroke-width="1"/>
             </g>
 
             // body outline redrawn on top of stripes
@@ -128,46 +128,33 @@ pub fn PonyoSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
 
             // === HAIR (drawn first, face circle covers center seam) ===
             // hair mass behind head — big orange-red blob
-            <ellipse cx="35" cy="30" rx="24" ry="22" fill="#C83020"/>
+            <ellipse cx="35" cy="30" rx="28" ry="26" fill="#C83020"/>
             // side hangs — hair coming down past face
-            <ellipse cx="13" cy="44" rx="8" ry="14" fill="#C83020"/>
-            <ellipse cx="57" cy="44" rx="8" ry="14" fill="#C83020"/>
+            <ellipse cx="8" cy="44" rx="9" ry="16" fill="#C83020"/>
+            <ellipse cx="62" cy="44" rx="9" ry="16" fill="#C83020"/>
             // top spiky clumps
             <ellipse cx="25" cy="14" rx="7" ry="9" fill="#D03828" transform="rotate(-20 25 14)"/>
             <ellipse cx="35" cy="10" rx="7" ry="10" fill="#C83020"/>
             <ellipse cx="45" cy="14" rx="7" ry="9" fill="#D03828" transform="rotate(20 45 14)"/>
 
             // === FACE (drawn on top — no stroke to avoid seam lines) ===
-            // cheek ellipse — wider at bottom
-            <ellipse cx="35" cy="54" rx="22" ry="13" fill="#e5c193"/>
+            // cheek ellipse — wider at bottom, takes bottom half of head
+            <ellipse cx="35" cy="53" rx="30" ry="20" fill="#e5c193"/>
             // round head — covers hair center, sits on cheeks
-            <circle cx="35" cy="38" r="20" fill="#e5c193"/>
-
-            // rosy cheeks
-            <ellipse cx="16" cy="52" rx="6" ry="4" fill="#e8907a" opacity="0.45"/>
-            <ellipse cx="54" cy="52" rx="6" ry="4" fill="#e8907a" opacity="0.45"/>
-
-            // eyebrows
-            <path d="M21 31 Q27 27 32 30" fill="none" stroke="#7a2010"
-                  stroke-width="2" stroke-linecap="round"/>
-            <path d="M38 30 Q43 27 49 31" fill="none" stroke="#7a2010"
-                  stroke-width="2" stroke-linecap="round"/>
+            <ellipse cx="35" cy="38" rx="30" ry="26" fill="#e5c193"/>
 
             // eyes
-            <circle cx="26" cy="40" r="7" fill="white"/>
-            <circle cx="44" cy="40" r="7" fill="white"/>
-            <circle cx="26" cy="41" r="4.5" fill="#1a1020"/>
-            <circle cx="44" cy="41" r="4.5" fill="#1a1020"/>
-            <circle cx="27.5" cy="39" r="1.8" fill="white"/>
-            <circle cx="45.5" cy="39" r="1.8" fill="white"/>
+            <circle cx="12" cy="40" r="6.5" fill="white" stroke="#1a1020" stroke-width="1"/>
+            <circle cx="58" cy="40" r="6.5" fill="white" stroke="#1a1020" stroke-width="1"/>
+            <circle cx="14" cy="39" r="3" fill="#1a1020"/>
+            <circle cx="56" cy="39" r="3" fill="#1a1020"/>
 
             // nose
-            <circle cx="33" cy="49" r="1.3" fill="#a07040" opacity="0.6"/>
-            <circle cx="37" cy="49" r="1.3" fill="#a07040" opacity="0.6"/>
+            <path d="M33 51 Q35 48 37 51" fill="none" stroke="#a07040"
+                  stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
 
-            // mouth
-            <path d="M29 56 Q35 61 41 56"
-                  fill="none" stroke="#a07040" stroke-width="1.8" stroke-linecap="round"/>
+            // mouth — small diamond
+            <path d="M35 55 L38 58 L35 61 L32 58 Z" fill="#1a1020"/>
         </svg>
     }
 }
