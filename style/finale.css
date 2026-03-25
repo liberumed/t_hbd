@@ -71,6 +71,9 @@
 .finale-reveal {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     opacity: 0;
     animation: fade-in 1.5s ease-out 7s both;
@@ -82,7 +85,7 @@
 
 .axolotl-svg {
     width: 176px;
-    height: 200px;
+    height: 191px;
     filter:
         drop-shadow(0 0 18px rgba(255, 255, 255, 0.4))
         drop-shadow(0 0 30px #FFB0D0)
@@ -141,7 +144,8 @@
     position: relative;
     z-index: 1;
     opacity: 0;
-    animation: fade-in 1s ease-out 8.5s both;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    animation: fade-in 1s ease-out 7.5s both;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    align-self: center;
 }

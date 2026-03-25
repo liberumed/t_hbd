@@ -17,26 +17,9 @@ pub fn FinaleScreen() -> impl IntoView {
             <UnderwaterScene bubble_count=30 seaweed_count=4 fish_count=5
                 show_light_rays=false />
 
-            <div class="finale-wishes">
-                {ActivityId::all()
-                    .into_iter()
-                    .map(|id| {
-                        view! {
-                            <div class="finale-wish">
-                                <span class="finale-wish-icon">{activity_icon_view(id)}</span>
-                                <div class="finale-wish-text">
-                                    <h3>{id.label()}</h3>
-                                    <p>{wishes::wish_for(&id)}</p>
-                                </div>
-                            </div>
-                        }
-                    })
-                    .collect::<Vec<_>>()}
-            </div>
-
             <div class="finale-reveal">
                 <div class="axolotl-surprise">
-                    <svg class="axolotl-svg" viewBox="0 0 220 250" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="axolotl-svg" viewBox="-5 -14 256 278" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <radialGradient id="body-glow" cx="50%" cy="50%" r="50%">
                                 <stop offset="0%" stop-color="white" stop-opacity="0.22"/>
@@ -160,12 +143,28 @@ pub fn FinaleScreen() -> impl IntoView {
                     </svg>
                 </div>
                 <h1 class="finale-title">{wishes::finale_message()}</h1>
-                <p class="finale-personal">"The ocean celebrates YOU today!"</p>
             </div>
 
             <button class="btn-secondary reset-btn" on:click=on_reset>
                 "Play Again"
             </button>
+
+            <div class="finale-wishes">
+                {ActivityId::all()
+                    .into_iter()
+                    .map(|id| {
+                        view! {
+                            <div class="finale-wish">
+                                <span class="finale-wish-icon">{activity_icon_view(id)}</span>
+                                <div class="finale-wish-text">
+                                    <h3>{id.label()}</h3>
+                                    <p>{wishes::wish_for(&id)}</p>
+                                </div>
+                            </div>
+                        }
+                    })
+                    .collect::<Vec<_>>()}
+            </div>
         </div>
     }
 }
