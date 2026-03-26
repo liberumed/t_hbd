@@ -51,59 +51,43 @@ pub fn FinaleScreen() -> impl IntoView {
                                   stroke-width="11" stroke-linecap="round"/>
                             <ellipse cx="154" cy="245" rx="10" ry="6" fill="#F4A0B8"/>
 
+                            // === LEFT GILLS (3-branch sideways, behind head) ===
+                            <g class="gill-left">
+                                <ellipse cx="52" cy="78" rx="10" ry="8" fill="#D84070"/>
+                                // branch 1 — lower-left
+                                <path d="M50 84 Q28 88 10 90" fill="none" stroke="#D84070" stroke-width="9" stroke-linecap="round"/>
+                                <ellipse cx="5" cy="90" rx="11" ry="7" fill="#D84070" transform="rotate(5 5 90)"/>
+                                <path d="M50 84 Q28 88 10 90" fill="none" stroke="#F4A0B8" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
+                                // branch 2 — straight left
+                                <path d="M50 76 Q28 74 10 72" fill="none" stroke="#E05080" stroke-width="8" stroke-linecap="round"/>
+                                <ellipse cx="5" cy="72" rx="11" ry="7" fill="#E05080"/>
+                                <path d="M50 76 Q28 74 10 72" fill="none" stroke="#F4A0B8" stroke-width="3.5" stroke-linecap="round" opacity="0.4"/>
+                                // branch 3 — upper-left
+                                <path d="M50 68 Q30 60 14 54" fill="none" stroke="#D84070" stroke-width="7" stroke-linecap="round"/>
+                                <ellipse cx="9" cy="52" rx="11" ry="7" fill="#D84070" transform="rotate(-15 9 52)"/>
+                                <path d="M50 68 Q30 60 14 54" fill="none" stroke="#F4A0B8" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+                            </g>
+
+                            // === RIGHT GILLS (3-branch sideways, behind head) ===
+                            <g class="gill-right">
+                                <ellipse cx="168" cy="78" rx="10" ry="8" fill="#D84070"/>
+                                // branch 1 — lower-right
+                                <path d="M170 84 Q192 88 210 90" fill="none" stroke="#D84070" stroke-width="9" stroke-linecap="round"/>
+                                <ellipse cx="215" cy="90" rx="11" ry="7" fill="#D84070" transform="rotate(-5 215 90)"/>
+                                <path d="M170 84 Q192 88 210 90" fill="none" stroke="#F4A0B8" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
+                                // branch 2 — straight right
+                                <path d="M170 76 Q192 74 210 72" fill="none" stroke="#E05080" stroke-width="8" stroke-linecap="round"/>
+                                <ellipse cx="215" cy="72" rx="11" ry="7" fill="#E05080"/>
+                                <path d="M170 76 Q192 74 210 72" fill="none" stroke="#F4A0B8" stroke-width="3.5" stroke-linecap="round" opacity="0.4"/>
+                                // branch 3 — upper-right
+                                <path d="M170 68 Q190 60 206 54" fill="none" stroke="#D84070" stroke-width="7" stroke-linecap="round"/>
+                                <ellipse cx="211" cy="52" rx="11" ry="7" fill="#D84070" transform="rotate(15 211 52)"/>
+                                <path d="M170 68 Q190 60 206 54" fill="none" stroke="#F4A0B8" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+                            </g>
+
                             // === HEAD ===
                             <ellipse cx="110" cy="94" rx="70" ry="48" fill="#F4A0B8"/>
-                            <ellipse cx="94" cy="74" rx="34" ry="15" fill="white" opacity="0.17"/>
-
-                            // === LEFT GILLS (5-branch fan) ===
-                            <g class="gill-left">
-                                <ellipse cx="50" cy="82" rx="11" ry="9" fill="#D84070"/>
-                                // branch 1 — lowest, going left
-                                <path d="M48 88 Q24 86 8 82" fill="none" stroke="#D84070" stroke-width="9" stroke-linecap="round"/>
-                                <ellipse cx="4" cy="81" rx="11" ry="7" fill="#D84070" transform="rotate(8 4 81)"/>
-                                <path d="M48 88 Q24 86 8 82" fill="none" stroke="#F4A0B8" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
-                                // branch 2 — going upper-left
-                                <path d="M48 79 Q26 68 10 56" fill="none" stroke="#D84070" stroke-width="9" stroke-linecap="round"/>
-                                <ellipse cx="5" cy="52" rx="11" ry="7" fill="#D84070" transform="rotate(-18 5 52)"/>
-                                <path d="M48 79 Q26 68 10 56" fill="none" stroke="#F4A0B8" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
-                                // branch 3 — upper-left
-                                <path d="M50 70 Q34 52 22 34" fill="none" stroke="#E05080" stroke-width="8" stroke-linecap="round"/>
-                                <ellipse cx="18" cy="28" rx="11" ry="7" fill="#E05080" transform="rotate(-32 18 28)"/>
-                                <path d="M50 70 Q34 52 22 34" fill="none" stroke="#F4A0B8" stroke-width="3.5" stroke-linecap="round" opacity="0.4"/>
-                                // branch 4 — upward
-                                <path d="M54 62 Q46 42 42 20" fill="none" stroke="#D84070" stroke-width="8" stroke-linecap="round"/>
-                                <ellipse cx="40" cy="13" rx="11" ry="7" fill="#D84070" transform="rotate(-6 40 13)"/>
-                                <path d="M54 62 Q46 42 42 20" fill="none" stroke="#F4A0B8" stroke-width="3.5" stroke-linecap="round" opacity="0.4"/>
-                                // branch 5 — inner upward
-                                <path d="M62 57 Q62 36 68 16" fill="none" stroke="#D84070" stroke-width="7" stroke-linecap="round"/>
-                                <ellipse cx="69" cy="9" rx="10" ry="7" fill="#D84070"/>
-                                <path d="M62 57 Q62 36 68 16" fill="none" stroke="#F4A0B8" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
-                            </g>
-
-                            // === RIGHT GILLS (5-branch fan, mirrored) ===
-                            <g class="gill-right">
-                                <ellipse cx="170" cy="82" rx="11" ry="9" fill="#D84070"/>
-                                // branch 1
-                                <path d="M172 88 Q196 86 212 82" fill="none" stroke="#D84070" stroke-width="9" stroke-linecap="round"/>
-                                <ellipse cx="216" cy="81" rx="11" ry="7" fill="#D84070" transform="rotate(-8 216 81)"/>
-                                <path d="M172 88 Q196 86 212 82" fill="none" stroke="#F4A0B8" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
-                                // branch 2
-                                <path d="M172 79 Q194 68 210 56" fill="none" stroke="#D84070" stroke-width="9" stroke-linecap="round"/>
-                                <ellipse cx="215" cy="52" rx="11" ry="7" fill="#D84070" transform="rotate(18 215 52)"/>
-                                <path d="M172 79 Q194 68 210 56" fill="none" stroke="#F4A0B8" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
-                                // branch 3
-                                <path d="M170 70 Q186 52 198 34" fill="none" stroke="#E05080" stroke-width="8" stroke-linecap="round"/>
-                                <ellipse cx="202" cy="28" rx="11" ry="7" fill="#E05080" transform="rotate(32 202 28)"/>
-                                <path d="M170 70 Q186 52 198 34" fill="none" stroke="#F4A0B8" stroke-width="3.5" stroke-linecap="round" opacity="0.4"/>
-                                // branch 4
-                                <path d="M166 62 Q174 42 178 20" fill="none" stroke="#D84070" stroke-width="8" stroke-linecap="round"/>
-                                <ellipse cx="180" cy="13" rx="11" ry="7" fill="#D84070" transform="rotate(6 180 13)"/>
-                                <path d="M166 62 Q174 42 178 20" fill="none" stroke="#F4A0B8" stroke-width="3.5" stroke-linecap="round" opacity="0.4"/>
-                                // branch 5
-                                <path d="M158 57 Q158 36 152 16" fill="none" stroke="#D84070" stroke-width="7" stroke-linecap="round"/>
-                                <ellipse cx="151" cy="9" rx="10" ry="7" fill="#D84070"/>
-                                <path d="M158 57 Q158 36 152 16" fill="none" stroke="#F4A0B8" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
-                            </g>
+                            <ellipse cx="110" cy="74" rx="34" ry="15" fill="white" opacity="0.17"/>
 
                             // === FRONT LEGS ===
                             <path d="M76 154 Q58 166 52 182" fill="none" stroke="#F4A0B8"
@@ -114,14 +98,10 @@ pub fn FinaleScreen() -> impl IntoView {
                             <ellipse cx="173" cy="186" rx="10" ry="6" fill="#F4A0B8"/>
 
                             // === EYES ===
-                            <circle cx="76" cy="98" r="19" fill="white"/>
-                            <circle cx="144" cy="98" r="19" fill="white"/>
                             <circle cx="79" cy="100" r="10" fill="#1a0810"/>
                             <circle cx="147" cy="100" r="10" fill="#1a0810"/>
-                            <circle cx="72" cy="93" r="5" fill="white"/>
-                            <circle cx="140" cy="93" r="5" fill="white"/>
-                            <circle cx="83" cy="107" r="2" fill="white" opacity="0.55"/>
-                            <circle cx="151" cy="107" r="2" fill="white" opacity="0.55"/>
+                            <circle cx="75" cy="96" r="3.5" fill="white"/>
+                            <circle cx="143" cy="96" r="3.5" fill="white"/>
 
                             // === FRECKLES ===
                             <circle cx="96" cy="78" r="2" fill="#E080A0" opacity="0.35"/>
