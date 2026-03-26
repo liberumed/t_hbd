@@ -2,6 +2,7 @@ use leptos::prelude::*;
 use wasm_bindgen::JsCast;
 use super::{ActivityWrapper, ActivityCompleteSignal};
 use crate::state::ActivityId;
+use crate::creatures::SebastianSvg;
 
 struct Riddle {
     question: &'static str,
@@ -104,7 +105,7 @@ fn TreasureGame() -> impl IntoView {
         <div class="treasure-hunt">
             <div class="treasure-speech">
                 <div class="speech-bubble crab-speech">
-                    <span class="speech-creature">"🦀"</span>
+                    <span class="speech-creature"><SebastianSvg size=52 /></span>
                     <p>{message}</p>
                 </div>
             </div>

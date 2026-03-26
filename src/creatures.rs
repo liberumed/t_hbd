@@ -223,3 +223,64 @@ pub fn AnglerFishSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
         </svg>
     }
 }
+
+#[component]
+pub fn SebastianSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
+    view! {
+        <svg width=size height=size viewBox="0 0 90 80" xmlns="http://www.w3.org/2000/svg"
+             class="creature-svg sebastian-svg">
+
+            // walking legs — behind body, left side
+            <line x1="28" y1="56" x2="10" y2="66" stroke="#CC2200" stroke-width="4.5" stroke-linecap="round"/>
+            <line x1="32" y1="60" x2="16" y2="72" stroke="#CC2200" stroke-width="4" stroke-linecap="round"/>
+            <line x1="36" y1="63" x2="22" y2="76" stroke="#CC2200" stroke-width="3.5" stroke-linecap="round"/>
+            // right side
+            <line x1="62" y1="56" x2="80" y2="66" stroke="#CC2200" stroke-width="4.5" stroke-linecap="round"/>
+            <line x1="58" y1="60" x2="74" y2="72" stroke="#CC2200" stroke-width="4" stroke-linecap="round"/>
+            <line x1="54" y1="63" x2="68" y2="76" stroke="#CC2200" stroke-width="3.5" stroke-linecap="round"/>
+
+            // left big claw
+            <path d="M22 50 Q4 46 1 32 Q0 18 12 16 Q21 20 17 34 Q15 42 22 48 Z"
+                  fill="#CC2200" stroke="#991100" stroke-width="1.5"/>
+            <path d="M14 26 Q12 20 17 18" fill="none" stroke="#E84030" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+
+            // right big claw
+            <path d="M68 50 Q86 46 89 32 Q90 18 78 16 Q69 20 73 34 Q75 42 68 48 Z"
+                  fill="#CC2200" stroke="#991100" stroke-width="1.5"/>
+            <path d="M76 26 Q78 20 73 18" fill="none" stroke="#E84030" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+
+            // body
+            <ellipse cx="45" cy="53" rx="26" ry="22" fill="#CC2200" stroke="#991100" stroke-width="2"/>
+            // belly plate
+            <ellipse cx="45" cy="57" rx="16" ry="13" fill="#E84030" opacity="0.5"/>
+            // body sheen
+            <ellipse cx="38" cy="44" rx="8" ry="5" fill="#E84030" opacity="0.25"/>
+
+            // eye stalks
+            <line x1="35" y1="34" x2="30" y2="16" stroke="#CC2200" stroke-width="5" stroke-linecap="round"/>
+            <line x1="55" y1="34" x2="60" y2="16" stroke="#CC2200" stroke-width="5" stroke-linecap="round"/>
+
+            // eyes — big expressive
+            <circle cx="28" cy="13" r="11" fill="white" stroke="#991100" stroke-width="1.5"/>
+            <circle cx="62" cy="13" r="11" fill="white" stroke="#991100" stroke-width="1.5"/>
+            <circle cx="29" cy="14" r="6.5" fill="#2a0a10"/>
+            <circle cx="61" cy="14" r="6.5" fill="#2a0a10"/>
+            <circle cx="30" cy="14" r="3.2" fill="#050208"/>
+            <circle cx="62" cy="14" r="3.2" fill="#050208"/>
+            <circle cx="26" cy="10" r="2" fill="white"/>
+            <circle cx="59" cy="10" r="2" fill="white"/>
+
+            // eyebrows — Sebastian's dramatic arched brows
+            <path d="M19 4 Q28 0 37 5" fill="none" stroke="#880000" stroke-width="3" stroke-linecap="round"/>
+            <path d="M53 5 Q62 0 71 4" fill="none" stroke="#880000" stroke-width="3" stroke-linecap="round"/>
+
+            // smile
+            <path d="M36 64 Q45 71 54 64" fill="none" stroke="#991100" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+    }
+}
+
+#[component]
+pub fn SebastianIcon() -> impl IntoView {
+    view! { <SebastianSvg size=36 /> }
+}

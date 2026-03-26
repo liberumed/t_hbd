@@ -5,6 +5,7 @@ use crate::activities::{
     PearlWisdomActivity, CurrentRiderActivity, CoralGardenActivity,
     DeepSeaLightsActivity, TreasureHuntActivity,
 };
+use crate::audio::AudioPlayer;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -15,6 +16,7 @@ pub fn App() -> impl IntoView {
 
     view! {
         <div class="app">
+            <AudioPlayer />
             {move || match current() {
                 Screen::Welcome => view! { <WelcomeScreen /> }.into_any(),
                 Screen::Hub => view! { <HubScreen /> }.into_any(),

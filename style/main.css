@@ -275,3 +275,28 @@ html, body {
     50% { transform: scaleY(0.1); }
     52% { transform: scaleY(1); }
 }
+
+/* ── Mute button ── */
+.mute-btn {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.35);
+    background: rgba(13, 43, 69, 0.65);
+    backdrop-filter: blur(6px);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.mute-btn:hover {
+    background: rgba(13, 43, 69, 0.85);
+    transform: scale(1.1);
+}

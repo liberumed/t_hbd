@@ -2,7 +2,7 @@ use leptos::prelude::*;
 use crate::state::{ActivityId, AppState};
 use crate::wishes;
 use crate::particles::UnderwaterScene;
-use crate::creatures::{ClamIcon, ClownFishSvg, PonyoSvg, AnglerFishSvg};
+use crate::creatures::{ClamIcon, ClownFishSvg, PonyoSvg, AnglerFishSvg, SebastianIcon};
 
 #[component]
 pub fn FinaleScreen() -> impl IntoView {
@@ -154,6 +154,6 @@ fn activity_icon_view(id: ActivityId) -> impl leptos::IntoView {
         ActivityId::CurrentRider   => view! { <ClownFishSvg size=36 /> }.into_any(),
         ActivityId::CoralGarden    => view! { <PonyoSvg size=36 /> }.into_any(),
         ActivityId::DeepSeaLights  => view! { <AnglerFishSvg size=36 /> }.into_any(),
-        ActivityId::TreasureHunt   => view! { "🦀" }.into_any(),
+        ActivityId::TreasureHunt   => view! { <SebastianIcon /> }.into_any(),
     }
 }
