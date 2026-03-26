@@ -3,6 +3,7 @@ use rand::seq::SliceRandom;
 use gloo_timers::callback::Timeout;
 use super::{ActivityWrapper, ActivityCompleteSignal};
 use crate::state::ActivityId;
+use crate::creatures::AnglerFishSvg;
 
 const CREATURES: [(&str, &str); 5] = [
     ("Jellyfish", "#00FFFF"),
@@ -96,7 +97,7 @@ fn LightsGame() -> impl IntoView {
         <div class="deep-sea-lights">
             <div class="lights-speech">
                 <div class="speech-bubble blowfish-speech">
-                    <span class="speech-creature">"🐡"</span>
+                    <span class="speech-creature"><AnglerFishSvg size=52 /></span>
                     <p>{message}</p>
                 </div>
             </div>

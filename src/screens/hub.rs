@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 use crate::state::{ActivityId, AppState, Screen};
 use crate::particles::UnderwaterScene;
-use crate::creatures::{ClamIcon, ClownFishSvg, PonyoSvg};
+use crate::creatures::{ClamIcon, ClownFishSvg, PonyoSvg, AnglerFishSvg};
 
 #[component]
 pub fn HubScreen() -> impl IntoView {
@@ -85,7 +85,7 @@ fn location_icon_view(id: ActivityId) -> impl leptos::IntoView {
         ActivityId::PearlWisdom => view! { <ClamIcon /> }.into_any(),
         ActivityId::CurrentRider => view! { <ClownFishSvg size=36 /> }.into_any(),
         ActivityId::CoralGarden => view! { <PonyoSvg size=36 /> }.into_any(),
-        ActivityId::DeepSeaLights => view! { "🐡" }.into_any(),
+        ActivityId::DeepSeaLights => view! { <AnglerFishSvg size=36 /> }.into_any(),
         ActivityId::TreasureHunt => view! { "🦀" }.into_any(),
     }
 }

@@ -162,3 +162,64 @@ pub fn PonyoSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
         </svg>
     }
 }
+
+#[component]
+pub fn AnglerFishSvg(#[prop(default = 64)] size: u32) -> impl IntoView {
+    view! {
+        <svg width=size height=size viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg"
+             class="creature-svg anglerfish-svg">
+            <defs>
+                <radialGradient id="lantern-glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#AAFFCC" stop-opacity="1"/>
+                    <stop offset="100%" stop-color="#00FF88" stop-opacity="0"/>
+                </radialGradient>
+            </defs>
+
+            // lantern glow halo
+            <circle cx="40" cy="6" r="12" fill="url(#lantern-glow)" opacity="0.7"/>
+
+            // lure stalk — from top of head upward
+            <path d="M40 28 Q44 20 42 14 Q40 8 40 6"
+                  fill="none" stroke="#1a3a2a" stroke-width="2" stroke-linecap="round"/>
+
+            // lantern bulb
+            <circle cx="40" cy="5" r="6" fill="#CCFFDD" opacity="0.85"/>
+            <circle cx="40" cy="5" r="4" fill="#00FF88"/>
+            <circle cx="38" cy="3.5" r="1.5" fill="white" opacity="0.8"/>
+
+            // body — wide flat front-facing
+            <ellipse cx="40" cy="58" rx="30" ry="24" fill="#1a2a3a"/>
+            // body highlight
+            <ellipse cx="40" cy="50" rx="16" ry="10" fill="#2a4a5a" opacity="0.45"/>
+
+            // side fins
+            <path d="M10 54 Q2 44 4 36 Q8 46 14 52 Z" fill="#122030"/>
+            <path d="M70 54 Q78 44 76 36 Q72 46 66 52 Z" fill="#122030"/>
+
+            // tail fin bottom
+            <path d="M28 80 Q20 90 24 88 Q32 84 40 82 Q48 84 56 88 Q60 90 52 80"
+                  fill="#122030" stroke="#0a1520" stroke-width="1"/>
+
+            // mouth — wide, slightly open, toothy
+            <path d="M16 66 Q28 74 40 72 Q52 74 64 66 Q52 70 40 68 Q28 70 16 66 Z"
+                  fill="#0a1520"/>
+            // upper teeth
+            <line x1="24" y1="66" x2="22" y2="71" stroke="#c8e8c8" stroke-width="2" stroke-linecap="round"/>
+            <line x1="32" y1="68" x2="31" y2="73" stroke="#c8e8c8" stroke-width="2" stroke-linecap="round"/>
+            <line x1="40" y1="69" x2="40" y2="74" stroke="#c8e8c8" stroke-width="2" stroke-linecap="round"/>
+            <line x1="48" y1="68" x2="49" y2="73" stroke="#c8e8c8" stroke-width="2" stroke-linecap="round"/>
+            <line x1="56" y1="66" x2="58" y2="71" stroke="#c8e8c8" stroke-width="2" stroke-linecap="round"/>
+
+            // eyes — wide set, large and eerie
+            <circle cx="22" cy="46" r="10" fill="#0a2a1a"/>
+            <circle cx="22" cy="46" r="8" fill="#1a5a3a"/>
+            <circle cx="22" cy="46" r="4.5" fill="#040e08"/>
+            <circle cx="19" cy="43" r="2.5" fill="#AAFFCC" opacity="0.8"/>
+
+            <circle cx="58" cy="46" r="10" fill="#0a2a1a"/>
+            <circle cx="58" cy="46" r="8" fill="#1a5a3a"/>
+            <circle cx="58" cy="46" r="4.5" fill="#040e08"/>
+            <circle cx="55" cy="43" r="2.5" fill="#AAFFCC" opacity="0.8"/>
+        </svg>
+    }
+}
