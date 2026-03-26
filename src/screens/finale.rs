@@ -143,10 +143,6 @@ pub fn FinaleScreen() -> impl IntoView {
                 <h1 class="finale-title">{wishes::finale_message()}</h1>
             </div>
 
-            <button class="btn-secondary reset-btn" on:click=on_reset>
-                "Play Again"
-            </button>
-
             <div class="finale-wishes">
                 {ActivityId::all()
                     .into_iter()
@@ -163,6 +159,10 @@ pub fn FinaleScreen() -> impl IntoView {
                     })
                     .collect::<Vec<_>>()}
             </div>
+
+            <button class="btn-secondary reset-btn" on:click=on_reset>
+                "Play Again"
+            </button>
         </div>
     }
 }
