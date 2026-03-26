@@ -14,7 +14,7 @@ pub fn WelcomeScreen() -> impl IntoView {
         <div class="screen welcome-screen">
             <UnderwaterScene bubble_count=20 seaweed_count=8 fish_count=4 />
             <div class="welcome-content">
-                <h1 class="welcome-title">"Happy Birthday!"</h1>
+                <h1 class="welcome-title">"Welcome, Tymur!"</h1>
                 <p class="welcome-subtitle">"A special underwater adventure awaits..."</p>
                 <button class="btn-primary dive-btn" on:click=dive_in>
                     "Dive In!"

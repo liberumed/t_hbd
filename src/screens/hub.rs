@@ -44,7 +44,7 @@ pub fn HubScreen() -> impl IntoView {
         <div class="screen hub-screen">
             <UnderwaterScene bubble_count=12 seaweed_count=6 fish_count=2 />
 
-            <h2 class="hub-title">"Choose Your Adventure"</h2>
+            <h2 class="hub-title">"Complete all 5 to unlock your surprise!"</h2>
 
             <div class="hub-locations">
                 {activities
