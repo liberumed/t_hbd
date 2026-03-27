@@ -156,25 +156,80 @@ fn TreasureGame() -> impl IntoView {
                 </div>
             </Show>
 
-            <div class=move || if chest_open.get() { "treasure-chest open" } else { "treasure-chest" }>
-                <svg viewBox="0 0 120 100" width="120" height="100" xmlns="http://www.w3.org/2000/svg">
-                    // chest body
-                    <rect x="10" y="45" width="100" height="50" rx="5" fill="var(--sand-dark)"/>
-                    <rect x="15" y="50" width="90" height="40" rx="3" fill="var(--sand-mid)"/>
-                    // bands
-                    <rect x="10" y="55" width="100" height="6" fill="var(--gold)" opacity="0.6"/>
-                    <rect x="10" y="75" width="100" height="6" fill="var(--gold)" opacity="0.6"/>
-                    // lock
-                    <circle cx="60" cy="65" r="8" fill="var(--gold)"/>
-                    <rect x="56" y="63" width="8" height="10" rx="2" fill="var(--sand-dark)"/>
-                    // lid
-                    <g class="chest-lid">
-                        <path d="M10 45 Q60 10 110 45 L110 45 L10 45 Z" fill="var(--sand-dark)"/>
-                        <path d="M15 43 Q60 15 105 43" fill="none" stroke="var(--gold)"
-                              stroke-width="3" opacity="0.6"/>
-                    </g>
-                </svg>
+            <div class="treasure-area">
+                <Show when=move || chest_open.get()>
+                    <div class="treasure-pile">
+                        {treasure_pile()}
+                    </div>
+                </Show>
+                <div class=move || if chest_open.get() { "treasure-chest open" } else { "treasure-chest" }>
+                    <svg viewBox="0 0 120 100" width="480" height="400" xmlns="http://www.w3.org/2000/svg">
+                        // chest body
+                        <rect x="10" y="45" width="100" height="50" rx="5" fill="var(--sand-dark)"/>
+                        <rect x="15" y="50" width="90" height="40" rx="3" fill="var(--sand-mid)"/>
+                        // bands
+                        <rect x="10" y="55" width="100" height="6" fill="var(--gold)" opacity="0.6"/>
+                        <rect x="10" y="75" width="100" height="6" fill="var(--gold)" opacity="0.6"/>
+                        // lock
+                        <circle cx="60" cy="65" r="8" fill="var(--gold)"/>
+                        <rect x="56" y="63" width="8" height="10" rx="2" fill="var(--sand-dark)"/>
+                        // lid
+                        <g class="chest-lid">
+                            <path d="M10 45 Q60 10 110 45 L110 45 L10 45 Z" fill="var(--sand-dark)"/>
+                            <path d="M15 43 Q60 15 105 43" fill="none" stroke="var(--gold)"
+                                  stroke-width="3" opacity="0.6"/>
+                        </g>
+                    </svg>
+                </div>
             </div>
         </div>
     }
+}
+
+fn treasure_pile() -> Vec<impl IntoView> {
+    const EMOJI: &[&str] = &[
+        "💰", "💎", "💰", "💍", "💎", "💰", "🏅", "💎", "💰", "🚀",
+        "💎", "💍", "💰", "💎", "🧸", "💰", "💎", "💍", "💰", "⭐",
+        "💰", "🎁", "💎", "💰", "✨", "💍", "💰", "🔑", "💎", "💰",
+        "🏆", "💎", "💰", "💍", "💰", "🪄", "💎", "💰", "🎯", "💎",
+        "🚀", "💰", "💎", "💍", "💰", "🌙", "💎", "💰", "🌟", "💍",
+        "🎀", "💎", "💰", "🎊", "💍", "💰", "🦋", "💎", "💰", "🎆",
+        "💰", "💎", "💍", "🍀", "💰", "🎈", "💎", "💰", "🧿", "💍",
+        "💎", "💰", "🌈", "💎", "💰", "💍", "🎠", "💰", "💎", "🚂",
+        "💰", "💍", "💎", "💰", "🎡", "💰", "💎", "💍", "💰", "🤖",
+        "💎", "💰", "🍭", "💍", "💰", "💎", "🎪", "💰", "💍", "💎",
+    ];
+    const ROWS: usize = 22;
+    let mut items: Vec<(f64, f64, i32, f64, &'static str)> = Vec::new();
+    let mut ei = 0usize;
+
+    for row in 1..=ROWS {
+        // row 1 = peak at top of div, row ROWS = base at bottom
+        let top_pct = (row - 1) as f64 / ROWS as f64 * 95.0;
+        // base pops in first, peak last
+        let delay = (ROWS - row) as f64 * 0.025;
+        // each row's spread contracts toward the peak
+        let spread = row as f64 / ROWS as f64 * 88.0;
+        let left_offset = (88.0 - spread) / 2.0;
+        for pos in 0..row {
+            let left_pct = if row == 1 {
+                44.0
+            } else {
+                left_offset + pos as f64 / (row - 1) as f64 * spread
+            };
+            let rot = ((pos * 7 + row * 3) % 31) as i32 - 15;
+            items.push((left_pct, top_pct, rot, delay, EMOJI[ei % EMOJI.len()]));
+            ei += 1;
+        }
+    }
+
+    items.into_iter().map(|(left, top, rot, delay, emoji)| {
+        let wrap_style = format!("left:{left:.1}%;top:{top:.1}%;transform:rotate({rot}deg)");
+        let item_style = format!("animation-delay:{delay:.3}s");
+        view! {
+            <div class="treasure-item-wrap" style=wrap_style>
+                <span class="treasure-item" style=item_style>{emoji}</span>
+            </div>
+        }
+    }).collect()
 }
