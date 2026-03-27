@@ -1,0 +1,302 @@
+:root {
+    --ocean-surface: #A8E6F0;
+    --ocean-mid: #4AADBA;
+    --ocean-deep: #1B6B8A;
+    --ocean-abyss: #0D2B45;
+    --ocean-floor: #1A3A4A;
+
+    --sand-light: #F5DEB3;
+    --sand-mid: #D4A96A;
+    --sand-dark: #8B7355;
+
+    --clam-primary: #C9B8D9;
+    --clam-secondary: #E8D5F0;
+    --fish-primary: #FF8C42;
+    --fish-secondary: #FFB347;
+    --ponyo-primary: #FF6B8A;
+    --ponyo-secondary: #FFB5C5;
+    --blowfish-primary: #7EC8A0;
+    --blowfish-secondary: #B5E8CC;
+    --crab-primary: #E85D3A;
+    --crab-secondary: #F4845F;
+    --axolotl-primary: #D4A0D4;
+    --axolotl-secondary: #F0C0E8;
+    --axolotl-glow: #FFD0F0;
+
+    --seaweed-dark: #2D8B57;
+    --seaweed-light: #4CAF7A;
+    --bubble: #D0F0FF;
+    --pearl: #F5F0FF;
+    --starfish: #FFD93D;
+    --gold: #FFD93D;
+
+    --text-primary: #F5F0FF;
+    --text-warm: #FFE0B2;
+    --text-shadow: #0D2B45;
+    --btn-primary: #FFB347;
+    --btn-hover: #FF8C42;
+    --btn-text: #0D2B45;
+    --success-glow: #FFD93D;
+    --speech-bg: rgba(245, 240, 255, 0.9);
+    --speech-border: #C9B8D9;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+    color: var(--text-primary);
+}
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        var(--ocean-surface) 0%,
+        var(--ocean-mid) 30%,
+        var(--ocean-deep) 70%,
+        var(--ocean-abyss) 100%
+    );
+    overflow: hidden;
+}
+
+/* Buttons */
+
+.btn-primary {
+    padding: 14px 36px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--btn-text);
+    background: var(--btn-primary);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(255, 179, 71, 0.4);
+    font-family: inherit;
+}
+
+.btn-primary:hover {
+    background: var(--btn-hover);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 140, 66, 0.5);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-back {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Bubbles */
+
+.bubbles-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -20px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.4),
+        var(--bubble) 50%,
+        rgba(208, 240, 255, 0.1)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: bubble-rise linear infinite;
+    will-change: transform;
+}
+
+/* Seaweed */
+
+.seaweed-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.seaweed {
+    position: absolute;
+    bottom: 10px;
+    transform-origin: bottom center;
+    animation: sway ease-in-out infinite;
+    will-change: transform;
+}
+
+/* Light rays */
+
+.light-rays-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.light-ray {
+    position: absolute;
+    top: -20%;
+    height: 120%;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    transform: skewX(-8deg);
+    animation: shimmer ease-in-out infinite;
+    will-change: opacity;
+}
+
+/* Swimming fish */
+
+.fish-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.swimming-fish {
+    position: absolute;
+    left: -60px;
+    animation: swim-across linear infinite;
+    will-change: transform;
+}
+
+/* Ocean floor */
+
+.ocean-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.floor-svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Clown Fish SVG */
+
+.clownfish-svg {
+    animation: gentle-bob 2s ease-in-out infinite;
+}
+
+/* Ponyo SVG */
+
+.ponyo-svg {
+    animation: gentle-bob 2.5s ease-in-out infinite;
+}
+
+/* Clam SVG */
+
+.clam-svg .clam-top-shell {
+    transform-origin: 32px 36px;
+    animation: clam-open 3s ease-in-out infinite;
+}
+
+.clam-svg .clam-eyes {
+    animation: clam-blink 4s ease-in-out infinite;
+}
+
+@keyframes clam-open {
+    0%, 100% { transform: rotate(0deg); }
+    40% { transform: rotate(-8deg); }
+    60% { transform: rotate(-8deg); }
+}
+
+@keyframes clam-blink {
+    0%, 100% { transform: scaleY(1); }
+    48% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); }
+    52% { transform: scaleY(1); }
+}
+
+/* ── Mute button ── */
+.mute-btn {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.35);
+    background: rgba(13, 43, 69, 0.65);
+    backdrop-filter: blur(6px);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.mute-btn:hover {
+    background: rgba(13, 43, 69, 0.85);
+    transform: scale(1.1);
+}
