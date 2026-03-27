@@ -21,11 +21,16 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 140px);
+    grid-template-rows: repeat(3, auto);
     gap: 1.2rem;
-    max-width: 520px;
-    width: 100%;
 }
+
+.loc-pearl   { grid-column: 2; grid-row: 1; }
+.loc-current { grid-column: 1; grid-row: 2; }
+.loc-coral   { grid-column: 2; grid-row: 2; }
+.loc-treasure{ grid-column: 3; grid-row: 2; }
+.loc-lights  { grid-column: 2; grid-row: 3; }
 
 .location {
     display: flex;
