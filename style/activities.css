@@ -330,21 +330,29 @@
 .coral-reef {
     flex: 1;
     position: relative;
-    border-radius: 16px;
-    background: linear-gradient(180deg, rgba(27, 107, 138, 0.2) 0%, var(--sand-light) 90%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    overflow: hidden;
     min-height: 250px;
+}
+
+.reef-rocks {
+    position: absolute;
+    bottom: 0;
+    left: -1rem;
+    right: -1rem;
+    width: calc(100% + 2rem);
+    height: 60vh;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .placed-coral {
     position: absolute;
     animation: pop-in 0.4s ease-out both;
+    z-index: 1;
 }
 
 .reef-life {
     position: absolute;
-    font-size: 1.8rem;
+    font-size: 9rem;
     animation: float-wobble 3s ease-in-out infinite, pop-in 0.5s ease-out;
     z-index: 1;
 }

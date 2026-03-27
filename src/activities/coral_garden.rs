@@ -34,9 +34,9 @@ fn CoralGame() -> impl IntoView {
     let place_coral = move |coral_type: usize| {
         let mut rng = rand::thread_rng();
         let x = rng.gen_range(5..90);
-        let bottom = rng.gen_range(5..35);
+        let bottom = rng.gen_range(8..22);
         let rotation = rng.gen_range(-15..15);
-        let scale = rng.gen_range(0.8..1.3_f64);
+        let scale = rng.gen_range(0.8..1.4_f64);
 
         placed_corals.update(|corals| {
             corals.push(PlacedCoral {
@@ -100,7 +100,45 @@ fn CoralGame() -> impl IntoView {
                 }).collect::<Vec<_>>()}
             </div>
 
+            <Show when=move || !life_message.get().is_empty()>
+                <div class="coral-life-msg">{life_message}</div>
+            </Show>
+
             <div class="coral-reef">
+                // Rocky formations — layered, transparent, higher floor feel
+                <svg class="reef-rocks" viewBox="0 0 1200 240"
+                     preserveAspectRatio="xMidYMax slice"
+                     xmlns="http://www.w3.org/2000/svg">
+                    // deep back layer
+                    <path d="M0 190 Q80 162 170 174 Q260 158 360 172 Q460 160 560 176
+                             Q660 162 760 174 Q860 160 960 175 Q1060 162 1200 172 L1200 240 L0 240 Z"
+                          fill="#0D2B45" opacity="0.65"/>
+                    // mid rocky ridge
+                    <path d="M0 205 Q50 182 110 196 Q175 178 250 194 Q325 180 410 198
+                             Q490 182 575 197 Q655 183 740 198 Q820 182 910 198
+                             Q990 183 1080 197 Q1140 186 1200 194 L1200 240 L0 240 Z"
+                          fill="#1A3A4A" opacity="0.7"/>
+                    // individual rock bumps mid layer
+                    <ellipse cx="140" cy="202" rx="55" ry="20" fill="#0D2B45" opacity="0.6"/>
+                    <ellipse cx="370" cy="197" rx="70" ry="26" fill="#122030" opacity="0.55"/>
+                    <ellipse cx="610" cy="204" rx="50" ry="19" fill="#0D2B45" opacity="0.6"/>
+                    <ellipse cx="840" cy="198" rx="65" ry="24" fill="#122030" opacity="0.55"/>
+                    <ellipse cx="1060" cy="203" rx="55" ry="20" fill="#0D2B45" opacity="0.6"/>
+                    // front rocky surface
+                    <path d="M0 218 Q35 200 78 214 Q120 200 168 216 Q215 202 270 218
+                             Q325 203 385 218 Q445 204 510 220 Q570 206 635 220
+                             Q700 206 765 219 Q830 205 895 220 Q960 206 1020 219
+                             Q1080 207 1140 218 Q1170 212 1200 216 L1200 240 L0 240 Z"
+                          fill="#1A3A4A" opacity="0.85"/>
+                    // surface rock formations
+                    <ellipse cx="60" cy="217" rx="36" ry="14" fill="#2A4A5A" opacity="0.7"/>
+                    <ellipse cx="280" cy="213" rx="48" ry="18" fill="#1A3A4A" opacity="0.65"/>
+                    <ellipse cx="500" cy="218" rx="38" ry="14" fill="#2A4A5A" opacity="0.7"/>
+                    <ellipse cx="730" cy="214" rx="44" ry="16" fill="#1A3A4A" opacity="0.65"/>
+                    <ellipse cx="960" cy="217" rx="40" ry="15" fill="#2A4A5A" opacity="0.7"/>
+                    <ellipse cx="1150" cy="215" rx="34" ry="13" fill="#1A3A4A" opacity="0.65"/>
+                </svg>
+
                 <Show when=move || { count.get() >= 3 }>
                     <span class="reef-life" style="left: 20%; bottom: 40%;">"🐠"</span>
                 </Show>
@@ -129,7 +167,7 @@ fn CoralGame() -> impl IntoView {
                     let color = CORAL_TYPES[coral.coral_type].1;
                     view! {
                         <div class="placed-coral" style=style>
-                            <svg viewBox="0 0 40 50" width="40" height="50"
+                            <svg viewBox="0 0 40 50" width="120" height="150"
                                  xmlns="http://www.w3.org/2000/svg"
                                  style=format!("--coral-color: {};", color)
                                  inner_html=coral_svg(coral.coral_type)>
@@ -139,9 +177,6 @@ fn CoralGame() -> impl IntoView {
                 }).collect::<Vec<_>>()}
             </div>
 
-            <Show when=move || !life_message.get().is_empty()>
-                <div class="coral-life-msg">{life_message}</div>
-            </Show>
         </div>
     }
 }

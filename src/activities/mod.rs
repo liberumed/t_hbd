@@ -13,6 +13,7 @@ pub use treasure_hunt::TreasureHuntActivity;
 use leptos::prelude::*;
 use crate::state::{ActivityId, AppState, Screen};
 use crate::wishes;
+use crate::particles::{OceanFloor, Seaweed};
 
 #[component]
 pub fn ActivityWrapper(id: ActivityId, children: Children) -> impl IntoView {
@@ -33,6 +34,8 @@ pub fn ActivityWrapper(id: ActivityId, children: Children) -> impl IntoView {
 
     view! {
         <div class="screen activity-screen">
+            <OceanFloor />
+            <Seaweed count=5 />
             <div class="activity-header">
                 <button class="btn-back" on:click=on_back>"< Back"</button>
                 <h2 class="activity-title">{id.label()}</h2>

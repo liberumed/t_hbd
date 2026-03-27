@@ -114,13 +114,66 @@ pub fn SwimmingFish(#[prop(default = 3)] count: usize) -> impl IntoView {
 
 #[component]
 pub fn OceanFloor() -> impl IntoView {
+    let mut rng = rand::thread_rng();
+
+    // Rocks: (cx, cy, rx, ry, opacity)
+    let rocks: Vec<_> = (0..10).map(|_| {
+        let cx = rng.gen_range(30_u32..1170);
+        let cy = rng.gen_range(108_u32..118);
+        let rx = rng.gen_range(10_u32..28);
+        let ry = rng.gen_range(5_u32..12);
+        let op = rng.gen_range(40_u32..75);
+        (cx, cy, rx, ry, op)
+    }).collect();
+
+    // Seaweed tufts: (x, blade_height, lean)
+    let tufts: Vec<_> = (0..14).map(|_| {
+        let x = rng.gen_range(20_u32..1180);
+        let h = rng.gen_range(18_u32..40);
+        let lean: i32 = rng.gen_range(-6..6);
+        (x, h, lean)
+    }).collect();
+
     view! {
         <div class="ocean-floor">
-            <svg class="floor-svg" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="floor-svg" viewBox="0 0 1200 120" preserveAspectRatio="none"
+                 xmlns="http://www.w3.org/2000/svg">
+
+                // sand layers
                 <path d="M0 80 Q100 60 200 70 Q300 80 400 65 Q500 50 600 70 Q700 90 800 65 Q900 50 1000 75 Q1100 85 1200 70 L1200 120 L0 120 Z"
                       fill="var(--sand-light)" opacity="0.4"/>
                 <path d="M0 90 Q150 75 300 85 Q450 95 600 80 Q750 70 900 85 Q1050 95 1200 80 L1200 120 L0 120 Z"
                       fill="var(--sand-mid)" opacity="0.3"/>
+
+                // rocks
+                {rocks.into_iter().map(|(cx, cy, rx, ry, op)| {
+                    let style = format!("opacity: 0.{op}");
+                    view! {
+                        <ellipse cx=cx cy=cy rx=rx ry=ry
+                                 fill="var(--ocean-floor)" style=style />
+                    }
+                }).collect::<Vec<_>>()}
+
+                // seaweed tufts
+                {tufts.into_iter().map(|(x, h, lean)| {
+                    let tip_x = x as i32 + lean;
+                    let tip_y = 120 - h as i32;
+                    let mid_x = x as i32 + lean / 2;
+                    let mid_y = 120 - h as i32 / 2;
+                    let l_x = x as i32 - 5 + lean;
+                    let r_x = x as i32 + 5 + lean;
+                    view! {
+                        <path d=format!("M{x} 120 Q{mid_x} {mid_y} {tip_x} {tip_y}")
+                              fill="none" stroke="var(--seaweed-dark)"
+                              stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+                        <path d=format!("M{x} 118 Q{l_x} {mid_y} {} {}", l_x - 2, tip_y + 6)
+                              fill="none" stroke="var(--seaweed-light)"
+                              stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                        <path d=format!("M{x} 118 Q{r_x} {mid_y} {} {}", r_x + 2, tip_y + 6)
+                              fill="none" stroke="var(--seaweed-light)"
+                              stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                    }
+                }).collect::<Vec<_>>()}
             </svg>
         </div>
     }
