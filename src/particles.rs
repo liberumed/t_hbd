@@ -140,10 +140,12 @@ pub fn OceanFloor() -> impl IntoView {
                  xmlns="http://www.w3.org/2000/svg">
 
                 // sand layers
+                // sand layers
+                <rect x="0" y="85" width="1200" height="35" fill="var(--sand-dark)"/>
                 <path d="M0 80 Q100 60 200 70 Q300 80 400 65 Q500 50 600 70 Q700 90 800 65 Q900 50 1000 75 Q1100 85 1200 70 L1200 120 L0 120 Z"
-                      fill="var(--sand-light)" opacity="0.4"/>
+                      fill="var(--sand-mid)"/>
                 <path d="M0 90 Q150 75 300 85 Q450 95 600 80 Q750 70 900 85 Q1050 95 1200 80 L1200 120 L0 120 Z"
-                      fill="var(--sand-mid)" opacity="0.3"/>
+                      fill="var(--sand-dark)"/>
 
                 // rocks
                 {rocks.into_iter().map(|(cx, cy, rx, ry, op)| {

@@ -632,3 +632,22 @@
     opacity: 0;
 }
 
+/* Deep Sea blob creature */
+
+.deep-blob {
+    position: absolute;
+    bottom: -110px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(460px, 55vw);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.25;
+    animation: blob-float 6s ease-in-out infinite;
+}
+
+@keyframes blob-float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(-18px); }
+}
+

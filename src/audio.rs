@@ -6,8 +6,8 @@ use web_sys::HtmlAudioElement;
 use crate::state::{ActivityId, AppState, Screen};
 
 const TARGET_VOL: f64 = 0.6;
-const FADE_STEPS: u32 = 30;
-const FADE_STEP_MS: u32 = 100; // 30 * 100ms = 3s fade
+const FADE_STEPS: u32 = 20;
+const FADE_STEP_MS: u32 = 100; // 20 * 100ms = 2s fade
 
 fn track_for_screen(screen: Screen) -> &'static str {
     match screen {

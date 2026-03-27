@@ -94,6 +94,41 @@ fn LightsGame() -> impl IntoView {
     };
 
     view! {
+        <div class="deep-blob">
+            <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                // main body
+                <ellipse cx="250" cy="325" rx="235" ry="190" fill="#030C12"/>
+                <ellipse cx="250" cy="315" rx="205" ry="165" fill="#050F18" opacity="0.7"/>
+                // side fins
+                <path d="M20 285 Q-15 240 12 305 Q32 355 72 305 Z" fill="#030C12"/>
+                <path d="M480 285 Q515 240 488 305 Q468 355 428 305 Z" fill="#030C12"/>
+                // small dorsal lumps
+                <ellipse cx="175" cy="168" rx="18" ry="10" fill="#030C12"/>
+                <ellipse cx="250" cy="155" rx="22" ry="12" fill="#030C12"/>
+                <ellipse cx="325" cy="168" rx="18" ry="10" fill="#030C12"/>
+                // eye sockets
+                <circle cx="170" cy="215" r="38" fill="#000A00"/>
+                <circle cx="330" cy="215" r="38" fill="#000A00"/>
+                // iris
+                <circle cx="170" cy="215" r="27" fill="#00BB33"/>
+                <circle cx="330" cy="215" r="27" fill="#00BB33"/>
+                // pupil
+                <circle cx="170" cy="215" r="13" fill="#001200"/>
+                <circle cx="330" cy="215" r="13" fill="#001200"/>
+                // specular highlight
+                <circle cx="160" cy="205" r="7" fill="#88FFAA" opacity="0.7"/>
+                <circle cx="320" cy="205" r="7" fill="#88FFAA" opacity="0.7"/>
+                // outer glow rings
+                <circle cx="170" cy="215" r="50" fill="#00FF55" opacity="0.05"/>
+                <circle cx="330" cy="215" r="50" fill="#00FF55" opacity="0.05"/>
+                // creepy mouth
+                <path d="M165 278 Q250 308 335 278" fill="none" stroke="#030C12" stroke-width="5" stroke-linecap="round"/>
+                // faint gill lines
+                <path d="M82 260 Q90 240 98 260 Q106 280 114 260" fill="none" stroke="#060F18" stroke-width="3" opacity="0.6"/>
+                <path d="M386 260 Q394 240 402 260 Q410 280 418 260" fill="none" stroke="#060F18" stroke-width="3" opacity="0.6"/>
+            </svg>
+        </div>
+
         <div class="deep-sea-lights">
             <div class="lights-speech">
                 <div class="speech-bubble blowfish-speech">
