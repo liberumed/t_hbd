@@ -188,28 +188,28 @@ fn TreasureGame() -> impl IntoView {
 
 fn treasure_pile() -> Vec<impl IntoView> {
     const EMOJI: &[&str] = &[
-        "💰", "💎", "💰", "💍", "💎", "💰", "🏅", "💎", "💰", "🚀",
-        "💎", "💍", "💰", "💎", "🧸", "💰", "💎", "💍", "💰", "⭐",
-        "💰", "🎁", "💎", "💰", "✨", "💍", "💰", "🔑", "💎", "💰",
-        "🏆", "💎", "💰", "💍", "💰", "🪄", "💎", "💰", "🎯", "💎",
-        "🚀", "💰", "💎", "💍", "💰", "🌙", "💎", "💰", "🌟", "💍",
-        "🎀", "💎", "💰", "🎊", "💍", "💰", "🦋", "💎", "💰", "🎆",
-        "💰", "💎", "💍", "🍀", "💰", "🎈", "💎", "💰", "🧿", "💍",
-        "💎", "💰", "🌈", "💎", "💰", "💍", "🎠", "💰", "💎", "🚂",
-        "💰", "💍", "💎", "💰", "🎡", "💰", "💎", "💍", "💰", "🤖",
-        "💎", "💰", "🍭", "💍", "💰", "💎", "🎪", "💰", "💍", "💎",
+        // top of pile — interesting items first
+        "🤿", "🛹", "🚲", "🛷", "🛶", "🏸", "🥋", "🪀", "🎲", "🚀",
+        "🧸", "🎁", "🏆", "🤖", "🎯", "🎠", "🎡", "🚂", "🎪", "🌈",
+        "🦋", "🪄", "🌙", "🎀", "🎊", "🍭", "💫", "✨", "🌟", "🎆",
+        // base of pile — coins, gems, jewelry
+        "💰", "💎", "💍", "💰", "💎", "💰", "💍", "💎", "💰", "💎",
+        "💍", "💰", "💎", "💰", "💍", "💎", "💰", "💎", "💍", "💰",
+        "💎", "💰", "💍", "💎", "💰", "💎", "💰", "💍", "💎", "💰",
+        "💰", "💍", "💎", "💰", "💎", "💍", "💰", "💎", "💰", "💍",
+        "💎", "💰", "💰", "💍", "💎", "💰", "💎", "💰", "💍", "💎",
+        "💍", "💎", "💰", "💎", "💰", "💍", "💰", "💎", "💍", "💰",
     ];
-    const ROWS: usize = 22;
+    const ROWS: usize = 16;
     let mut items: Vec<(f64, f64, i32, f64, &'static str)> = Vec::new();
     let mut ei = 0usize;
 
     for row in 1..=ROWS {
-        // row 1 = peak at top of div, row ROWS = base at bottom
-        let top_pct = (row - 1) as f64 / ROWS as f64 * 95.0;
-        // base pops in first, peak last
-        let delay = (ROWS - row) as f64 * 0.025;
-        // each row's spread contracts toward the peak
-        let spread = row as f64 / ROWS as f64 * 88.0;
+        let top_pct = (row - 1) as f64 / (ROWS - 1) as f64 * 75.0;
+        let delay = (ROWS - row) as f64 * 0.04;
+        // semicircular spread: wide at base, curves in toward peak
+        let r_norm = (row - 1) as f64 / (ROWS - 1) as f64;
+        let spread = (r_norm * (2.0 - r_norm)).sqrt() * 88.0;
         let left_offset = (88.0 - spread) / 2.0;
         for pos in 0..row {
             let left_pct = if row == 1 {
