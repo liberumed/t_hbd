@@ -61,7 +61,9 @@ fn CoralGame() -> impl IntoView {
             _ if n >= NEEDED => {
                 message.set("Beautiful! Your reef is alive!".into());
                 life_message.set("The reef is teeming with life!".into());
-                complete.trigger();
+                if n == NEEDED {
+                    complete.trigger();
+                }
             }
             _ => {}
         }

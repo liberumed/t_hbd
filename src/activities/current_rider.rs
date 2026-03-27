@@ -7,7 +7,8 @@ use crate::creatures::ClownFishSvg;
 
 const TOTAL_STARFISH: usize = 10;
 const TICK_MS: u32 = 33; // ~30fps
-const SPEED: f64 = 0.3; // % per tick — fish travels full field in ~10s
+const SPEED: f64 = 0.3;
+const SPEED_BOOST: f64 = 0.75;
 
 // (x%, y%) positions of starfish in the field
 const STARFISH_POS: [(f64, f64); TOTAL_STARFISH] = [
@@ -39,6 +40,7 @@ fn CurrentGame() -> impl IntoView {
     let fish_x = RwSignal::new(5.0_f64);
     let fish_y = RwSignal::new(50.0_f64);
     let game_done = RwSignal::new(false);
+    let boosted = RwSignal::new(false);
     let message = RwSignal::new("Move up and down — ride the current!".to_string());
 
     let starfish_caught: Vec<RwSignal<bool>> = (0..TOTAL_STARFISH)
@@ -48,11 +50,8 @@ fn CurrentGame() -> impl IntoView {
     // Game loop: advance fish_x, check collisions
     let caught_clone = starfish_caught.clone();
     let closure = Closure::wrap(Box::new(move || {
-        if game_done.get() {
-            return;
-        }
-
-        let new_x = fish_x.get() + SPEED;
+        let speed = if boosted.get() { SPEED_BOOST } else { SPEED };
+        let new_x = fish_x.get() + speed;
         fish_x.set(new_x);
 
         let fy = fish_y.get();
@@ -103,9 +102,6 @@ fn CurrentGame() -> impl IntoView {
     });
 
     let on_mouse_move = move |ev: web_sys::MouseEvent| {
-        if game_done.get() {
-            return;
-        }
         let target = ev.current_target().unwrap();
         let element: web_sys::HtmlElement = target.unchecked_into();
         let rect = element.get_bounding_client_rect();
@@ -115,9 +111,6 @@ fn CurrentGame() -> impl IntoView {
 
     let on_touch_move = move |ev: web_sys::TouchEvent| {
         ev.prevent_default();
-        if game_done.get() {
-            return;
-        }
         if let Some(touch) = ev.touches().get(0) {
             let target = ev.current_target().unwrap();
             let element: web_sys::HtmlElement = target.unchecked_into();
@@ -143,6 +136,11 @@ fn CurrentGame() -> impl IntoView {
             <div class="current-field"
                 on:mousemove=on_mouse_move
                 on:touchmove=on_touch_move
+                on:mousedown=move |_| boosted.set(true)
+                on:mouseup=move |_| boosted.set(false)
+                on:mouseleave=move |_| boosted.set(false)
+                on:touchstart=move |_| boosted.set(true)
+                on:touchend=move |_| boosted.set(false)
             >
                 <div class="current-stream stream-1"></div>
                 <div class="current-stream stream-2"></div>
@@ -152,12 +150,7 @@ fn CurrentGame() -> impl IntoView {
                 <div class="current-player"
                     style=move || format!("left: {}%; top: {}%;", fish_x.get(), fish_y.get())
                 >
-                    <svg viewBox="0 0 50 30" width="50" height="30" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="28" cy="15" rx="18" ry="10" fill="var(--fish-primary)"/>
-                        <polygon points="10,15 0,8 0,22" fill="var(--fish-secondary)"/>
-                        <circle cx="38" cy="12" r="3" fill="var(--ocean-abyss)"/>
-                        <circle cx="39" cy="11" r="1.2" fill="white"/>
-                    </svg>
+                    <ClownFishSvg size=64 />
                 </div>
 
                 // Starfish

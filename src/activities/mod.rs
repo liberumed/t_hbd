@@ -46,8 +46,8 @@ pub fn ActivityWrapper(id: ActivityId, children: Children) -> impl IntoView {
             </div>
 
             <Show when=move || show_wish.get()>
-                <div class="wish-overlay">
-                    <div class="wish-card">
+                <div class="wish-overlay" on:click=move |_| show_wish.set(false)>
+                    <div class="wish-card" on:click=|e| e.stop_propagation()>
                         <p class="wish-text">{wishes::wish_for(&id)}</p>
                         <button class="btn-primary" on:click=on_back>
                             "Back to Ocean"
