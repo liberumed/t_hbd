@@ -1,0 +1,255 @@
+.finale-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 1rem;
+    background: linear-gradient(
+        180deg,
+        var(--ocean-deep) 0%,
+        var(--ocean-abyss) 50%,
+        #0a1628 100%
+    );
+    overflow-y: auto;
+}
+
+.finale-wishes {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    max-width: 580px;
+    width: 100%;
+    padding: 0 1rem;
+    margin-top: 1rem;
+}
+
+.finale-wish {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.7rem 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    opacity: 0;
+    animation: slide-up 0.6s ease-out both;
+}
+
+.finale-wish:nth-child(1) { animation-delay: 1.5s; }
+.finale-wish:nth-child(2) { animation-delay: 2.5s; }
+.finale-wish:nth-child(3) { animation-delay: 3.5s; }
+.finale-wish:nth-child(4) { animation-delay: 4.5s; }
+.finale-wish:nth-child(5) { animation-delay: 5.5s; }
+
+.finale-wish-icon {
+    flex-shrink: 0;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.finale-wish-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.finale-wish h3 {
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.finale-wish p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    opacity: 0.9;
+}
+
+.finale-reveal {
+    position: relative;
+    z-index: 1;
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    animation: fade-in 1.5s ease-out 7s both;
+}
+
+.axolotl-surprise {
+    margin-bottom: 0.5rem;
+    overflow: visible;
+}
+
+.axolotl-svg {
+    width: 220px;
+    height: 191px;
+    overflow: visible;
+    filter:
+        drop-shadow(0 0 18px rgba(255, 255, 255, 0.4))
+        drop-shadow(0 0 30px #FFB0D0)
+        drop-shadow(0 0 8px #FFA040);
+}
+
+.axolotl-body-group {
+    animation: body-bop 2.4s linear infinite;
+    transform-origin: 110px 200px;
+}
+
+.axolotl-head {
+    transform-origin: 110px 120px;
+    animation: head-bop 2.4s linear infinite;
+}
+
+.arm-left {
+    transform-origin: 86px 154px;
+    animation: fist-pump-left 2.4s linear infinite;
+}
+
+.arm-right {
+    transform-origin: 136px 154px;
+    animation: fist-pump-right 2.4s linear infinite;
+}
+
+.leg-back-left {
+    transform-origin: 96px 222px;
+    animation: hip-bop-left 2.4s linear infinite;
+}
+
+.leg-back-right {
+    transform-origin: 126px 218px;
+    animation: hip-bop-right 2.4s linear infinite;
+}
+
+.gill-left {
+    transform-origin: 50px 82px;
+    animation: gill-bop-left 1.2s linear infinite;
+}
+
+.gill-right {
+    transform-origin: 170px 82px;
+    animation: gill-bop-right 1.2s linear infinite;
+}
+
+.axolotl-eyes {
+    transform-origin: 113px 100px;
+    animation: blink 4s ease-in-out infinite;
+}
+
+.axolotl-tail {
+    transform-origin: 88px 215px;
+    animation: tail-bop 2.4s linear infinite;
+}
+
+@keyframes body-bop {
+    0% { transform: translateX(-5px) rotate(-3deg); }
+    25% { transform: translateX(0px) rotate(0deg); }
+    50% { transform: translateX(5px) rotate(3deg); }
+    75% { transform: translateX(0px) rotate(0deg); }
+    100% { transform: translateX(-5px) rotate(-3deg); }
+}
+
+@keyframes head-bop {
+    0% { transform: rotate(10deg) translateX(7px); }
+    25% { transform: rotate(0deg) translateX(0px); }
+    50% { transform: rotate(-10deg) translateX(-7px); }
+    75% { transform: rotate(0deg) translateX(0px); }
+    100% { transform: rotate(10deg) translateX(7px); }
+}
+
+@keyframes fist-pump-left {
+    0% { transform: translateY(-7px) translateX(-4px) rotate(-10deg); }
+    15% { transform: translateY(-2px) translateX(-1px) rotate(-3deg); }
+    25% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    40% { transform: translateY(0px) translateX(4px) rotate(3deg); }
+    50% { transform: translateY(2px) translateX(10px) rotate(6deg); }
+    65% { transform: translateY(0px) translateX(4px) rotate(3deg); }
+    75% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    90% { transform: translateY(-2px) translateX(-1px) rotate(-3deg); }
+    100% { transform: translateY(-7px) translateX(-4px) rotate(-10deg); }
+}
+
+@keyframes fist-pump-right {
+    0% { transform: translateY(2px) translateX(-10px) rotate(-6deg); }
+    15% { transform: translateY(0px) translateX(-4px) rotate(-3deg); }
+    25% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    40% { transform: translateY(-2px) translateX(1px) rotate(3deg); }
+    50% { transform: translateY(-7px) translateX(4px) rotate(10deg); }
+    65% { transform: translateY(-2px) translateX(1px) rotate(3deg); }
+    75% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    90% { transform: translateY(0px) translateX(-4px) rotate(-3deg); }
+    100% { transform: translateY(2px) translateX(-10px) rotate(-6deg); }
+}
+
+@keyframes hip-bop-left {
+    0% { transform: translateY(-2px) translateX(-1px); }
+    15% { transform: translateY(0px) translateX(0px); }
+    35% { transform: translateY(0px) translateX(1px); }
+    50% { transform: translateY(-6px) translateX(1px); }
+    65% { transform: translateY(0px) translateX(1px); }
+    85% { transform: translateY(0px) translateX(0px); }
+    100% { transform: translateY(-2px) translateX(-1px); }
+}
+
+@keyframes hip-bop-right {
+    0% { transform: translateY(-6px) translateX(-1px); }
+    15% { transform: translateY(0px) translateX(-1px); }
+    35% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-2px) translateX(1px); }
+    65% { transform: translateY(0px) translateX(0px); }
+    85% { transform: translateY(0px) translateX(-1px); }
+    100% { transform: translateY(-6px) translateX(-1px); }
+}
+
+@keyframes gill-bop-left {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(10deg); }
+}
+
+@keyframes gill-bop-right {
+    0%, 100% { transform: rotate(5deg); }
+    50% { transform: rotate(-10deg); }
+}
+
+@keyframes tail-bop {
+    0% { transform: rotate(6deg); }
+    25% { transform: rotate(-2deg); }
+    50% { transform: rotate(-6deg); }
+    75% { transform: rotate(2deg); }
+    85% { transform: rotate(-2deg); }
+}
+
+@keyframes blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.05); }
+    97% { transform: scaleY(1); }
+}
+
+.finale-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-warm);
+    text-shadow: 0 0 20px rgba(255, 208, 240, 0.5), 0 2px 10px var(--text-shadow);
+    margin-bottom: 0.3rem;
+}
+
+.finale-personal {
+    font-size: 1.1rem;
+    color: var(--axolotl-glow);
+    opacity: 0.9;
+}
+
+.finale-screen .reset-btn {
+    position: absolute;
+    bottom: 4rem;
+    right: 1.5rem;
+    z-index: 1;
+    opacity: 0;
+    animation: fade-in 1s ease-out 7.5s both;
+    align-self: center;
+}
