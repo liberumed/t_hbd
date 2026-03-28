@@ -38,10 +38,6 @@ pub fn FinaleScreen() -> impl IntoView {
                                       fill="#FAD0E0" opacity="0.65"/>
                             </g>
 
-                            // === BODY ===
-                            <ellipse cx="112" cy="178" rx="34" ry="50" fill="#F4A0B8"/>
-                            <ellipse cx="112" cy="185" rx="21" ry="33" fill="#FAD0E0" opacity="0.6"/>
-
                             // === BACK LEGS ===
                             <g class="leg-back-left">
                                 <path d="M96 222 Q92 236 90 246" fill="none" stroke="#F4A0B8"
@@ -53,6 +49,10 @@ pub fn FinaleScreen() -> impl IntoView {
                                       stroke-width="11" stroke-linecap="round"/>
                                 <ellipse cx="142" cy="245" rx="10" ry="6" fill="#F4A0B8"/>
                             </g>
+
+                            // === BODY ===
+                            <ellipse cx="112" cy="178" rx="34" ry="50" fill="#F4A0B8"/>
+                            <ellipse cx="112" cy="185" rx="21" ry="33" fill="#FAD0E0" opacity="0.6"/>
 
                             // === HEAD ===
                             <g class="axolotl-head">
