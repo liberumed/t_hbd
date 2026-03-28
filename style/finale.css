@@ -83,11 +83,13 @@
 
 .axolotl-surprise {
     margin-bottom: 0.5rem;
+    overflow: visible;
 }
 
 .axolotl-svg {
-    width: 176px;
+    width: 220px;
     height: 191px;
+    overflow: visible;
     filter:
         drop-shadow(0 0 18px rgba(255, 255, 255, 0.4))
         drop-shadow(0 0 30px #FFB0D0)
@@ -95,37 +97,137 @@
 }
 
 .axolotl-body-group {
-    animation: gentle-bob 2s ease-in-out infinite;
+    animation: body-bop 2.4s linear infinite;
+    transform-origin: 110px 200px;
+}
+
+.axolotl-head {
+    transform-origin: 110px 120px;
+    animation: head-bop 2.4s linear infinite;
+}
+
+.arm-left {
+    transform-origin: 86px 154px;
+    animation: fist-pump-left 2.4s linear infinite;
+}
+
+.arm-right {
+    transform-origin: 136px 154px;
+    animation: fist-pump-right 2.4s linear infinite;
+}
+
+.leg-back-left {
+    transform-origin: 96px 222px;
+    animation: hip-bop-left 2.4s linear infinite;
+}
+
+.leg-back-right {
+    transform-origin: 126px 218px;
+    animation: hip-bop-right 2.4s linear infinite;
 }
 
 .gill-left {
     transform-origin: 50px 82px;
-    animation: gill-wave-left 1.5s ease-in-out infinite;
+    animation: gill-bop-left 1.2s linear infinite;
 }
 
 .gill-right {
     transform-origin: 170px 82px;
-    animation: gill-wave-right 1.5s ease-in-out infinite;
+    animation: gill-bop-right 1.2s linear infinite;
+}
+
+.axolotl-eyes {
+    transform-origin: 113px 100px;
+    animation: blink 4s ease-in-out infinite;
 }
 
 .axolotl-tail {
     transform-origin: 88px 215px;
-    animation: tail-sway 2s ease-in-out infinite;
+    animation: tail-bop 2.4s linear infinite;
 }
 
-@keyframes gill-wave-left {
+@keyframes body-bop {
+    0% { transform: translateX(-5px) rotate(-3deg); }
+    25% { transform: translateX(0px) rotate(0deg); }
+    50% { transform: translateX(5px) rotate(3deg); }
+    75% { transform: translateX(0px) rotate(0deg); }
+    100% { transform: translateX(-5px) rotate(-3deg); }
+}
+
+@keyframes head-bop {
+    0% { transform: rotate(10deg) translateX(7px); }
+    25% { transform: rotate(0deg) translateX(0px); }
+    50% { transform: rotate(-10deg) translateX(-7px); }
+    75% { transform: rotate(0deg) translateX(0px); }
+    100% { transform: rotate(10deg) translateX(7px); }
+}
+
+@keyframes fist-pump-left {
+    0% { transform: translateY(-7px) translateX(-4px) rotate(-10deg); }
+    15% { transform: translateY(-2px) translateX(-1px) rotate(-3deg); }
+    25% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    40% { transform: translateY(0px) translateX(4px) rotate(3deg); }
+    50% { transform: translateY(2px) translateX(10px) rotate(6deg); }
+    65% { transform: translateY(0px) translateX(4px) rotate(3deg); }
+    75% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    90% { transform: translateY(-2px) translateX(-1px) rotate(-3deg); }
+    100% { transform: translateY(-7px) translateX(-4px) rotate(-10deg); }
+}
+
+@keyframes fist-pump-right {
+    0% { transform: translateY(2px) translateX(-10px) rotate(-6deg); }
+    15% { transform: translateY(0px) translateX(-4px) rotate(-3deg); }
+    25% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    40% { transform: translateY(-2px) translateX(1px) rotate(3deg); }
+    50% { transform: translateY(-7px) translateX(4px) rotate(10deg); }
+    65% { transform: translateY(-2px) translateX(1px) rotate(3deg); }
+    75% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    90% { transform: translateY(0px) translateX(-4px) rotate(-3deg); }
+    100% { transform: translateY(2px) translateX(-10px) rotate(-6deg); }
+}
+
+@keyframes hip-bop-left {
+    0% { transform: translateY(-2px) translateX(-1px); }
+    15% { transform: translateY(0px) translateX(0px); }
+    35% { transform: translateY(0px) translateX(1px); }
+    50% { transform: translateY(-6px) translateX(1px); }
+    65% { transform: translateY(0px) translateX(1px); }
+    85% { transform: translateY(0px) translateX(0px); }
+    100% { transform: translateY(-2px) translateX(-1px); }
+}
+
+@keyframes hip-bop-right {
+    0% { transform: translateY(-6px) translateX(-1px); }
+    15% { transform: translateY(0px) translateX(-1px); }
+    35% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-2px) translateX(1px); }
+    65% { transform: translateY(0px) translateX(0px); }
+    85% { transform: translateY(0px) translateX(-1px); }
+    100% { transform: translateY(-6px) translateX(-1px); }
+}
+
+@keyframes gill-bop-left {
     0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(8deg); }
+    50% { transform: rotate(10deg); }
 }
 
-@keyframes gill-wave-right {
+@keyframes gill-bop-right {
     0%, 100% { transform: rotate(5deg); }
-    50% { transform: rotate(-8deg); }
+    50% { transform: rotate(-10deg); }
 }
 
-@keyframes tail-sway {
-    0%, 100% { transform: rotate(-8deg); }
-    50% { transform: rotate(8deg); }
+@keyframes tail-bop {
+    0% { transform: rotate(6deg); }
+    25% { transform: rotate(-2deg); }
+    50% { transform: rotate(-6deg); }
+    75% { transform: rotate(2deg); }
+    85% { transform: rotate(-2deg); }
+}
+
+@keyframes blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.05); }
+    97% { transform: scaleY(1); }
 }
 
 .finale-title {
